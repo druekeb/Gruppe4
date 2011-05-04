@@ -1,0 +1,23 @@
+Funktionalität:
+
+Frontend 
+
+ - Abbildung der Menüstruktur Unterpunkten, die ein Durchblättern und Suchen ermöglicht.
+ 
+ - Suchfunktionen
+ 	- einfache Suche: Alle Beiträge werden nach textlicher Übereinstimmung des Suchbegriffes durchsucht. Ausgabe in form einer Liste von bis zu 10 Treffern mit der Möglichkeit weitere Treffer anzusehen. Treffer werden durch die Artikelüberschrift, Datum, Autor und gegebenfalls Kategorie sowie den erste drei Zeilen des Inhaltes angezeigt.
+ 	- erweiterete Suche: Einschränkung der einfachen Suche nach Unterpunkten: Autor, Datum, Kategorie (z.b. Lehrgebiet, Artikeltyp (Lehrveranstaltung, Klausur, Vortrag, Seminar, Konferenz, ... )
+
+Backend
+ 	Nach einloggen als Redakteur steht ein erweitertes Frontend zur Verfügung welches Änderungen an den Inhalten ermöglicht. Dabei werden zusätzliche Operationen unterhalb jeden Artikels angezeigt:
+	- Editieren des Artikel 
+	- Versionen des Artikels ansehen
+	- Archiviern des Artikels
+	- Löschen eines Artikels
+	Irgendwo muss es dann auch eine Option "neuen Beitrag erstellen" geben.
+	Alternativ könnte man auch diese Optionen in einem letzten Menüpunkt unterbringen, der nur dann sichtbar wird, wenn man als Redakteur eingeloggt ist.
+
+Datenbank
+	Die Datenbank ist passiv und bildet das ER-Diagramm ab.
+	Zugriff auf die Datenbank findet mittels SQL-Abfragen seitens des Frontends und des Backends statt.
+	
