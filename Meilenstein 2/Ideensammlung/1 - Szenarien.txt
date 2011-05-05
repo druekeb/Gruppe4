@@ -1,13 +1,13 @@
 - Szenario neuen Artikel anlegen
-Eine Kategorie, in der der neue Artikel erscheinen soll, wird vom Redakteur gewählt. Er bestimmt ein Template, dass das spätere Aussehen des Artikels festlegt. Der Redakteur gibt Titel und Inhalt ein und speichert seine Eingaben. Er gibt den Artikel zur Veröffentlichung frei.
+Eine Kategorie, in der der neue Artikel erscheinen soll, wird vom Redakteur gewÃ¤hlt. Er bestimmt ein Template, dass das spÃ¤tere Aussehen des Artikels festlegt. Der Redakteur gibt Titel und Inhalt ein und speichert seine Eingaben. Er gibt den Artikel zur VerÃ¶ffentlichung frei.
 
 
 - Szenario bestehenden Artikel bearbeiten
-Der Redakteur wählt einen Artikel zur Bearbeitung. Er nimmt Änderungen am Inhalt vor, speichert diese und gibt die Änderungen zur Veröffentlichung frei. Eine neue Version des Artikels wird erzeugt.
+Der Redakteur wÃ¤hlt einen Artikel zur Bearbeitung. Er nimmt Ã„nderungen am Inhalt vor, speichert diese und gibt die Ã„nderungen zur VerÃ¶ffentlichung frei. Eine neue Version des Artikels wird erzeugt.
 
 
 - Szenario neuen Artikel anlegen - mit Ablaufdatum
-Ein Artikel, der nicht mehr angezeigt werden soll, wenn er nicht mehr aktuell ist (z. B. eine Klausurankündigung) soll angelegt werden. Die Schritte ensprechen zunächst denen im Szenario "neuen Artikel anlegen". Zusätzlich bestimmt der Redakteur ein Ablaufdatum, nach dem der Artikel automatischt archiviert wird.
+Ein Artikel, der nicht mehr angezeigt werden soll, wenn er nicht mehr aktuell ist (z. B. eine KlausurankÃ¼ndigung) soll angelegt werden. Die Schritte ensprechen zunÃ¤chst denen im Szenario "neuen Artikel anlegen". ZusÃ¤tzlich bestimmt der Redakteur ein Ablaufdatum, nach dem der Artikel automatischt archiviert wird.
 
 
 
