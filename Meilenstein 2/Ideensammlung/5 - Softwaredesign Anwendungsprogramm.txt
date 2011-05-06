@@ -1,0 +1,19 @@
+Das Anwendungsprogramm ist ein statisches Content Management System (CMS), das heißt, die einzelnen Webseiten werden durch das System erzeugt und als statische Datei in der Datenbank abgelegt. Dieses Vorgehen garantiert zum einen hohe Auslieferungsgeschwindigkeit der angeforderten Seiten und zum anderen erleichtert es die Versionierung, indem bei jeder Änderung einer Seite eine Versionsnummer vergeben werden kann. So kann jederzeit auf eine vorherige Version der Seiten zugegriffen werden.
+
+Die Anwendung unterstützt eine Rechteverwaltung, so dass dem Anwender nach dem Login die entsprechende Funktionalität, die seinen Rollen entspricht, zur Verfügung gestellt wird.
+
+Der Publishing-Prozess ist als Workflow realisiert. Eine erweiterte Anforderung wäre eine Beteiligung mehrerer Personen an der Edition einer Seite.
+
+Eine Vorschau-Funktion erlaubt die Kontrolle der editierten Seite im Kontext der Site vor der Veröffentlichung.
+
+Durch die Anwendung werden verschiedene Templates für Einzelseiten zur Verfügung gestellt, so dass die Einhaltung eines durchgehenden Designs gewährleistet ist.
+
+Ein Content-Life-Cycle-Management sorgt dafür, dass Inhalte, die mit zeitlicher Begrenzung veröffentlicht werden (z.B.Ankündigung von Terminen, Abgabe von Online-Dokumenten) nach Ablaufdatum automatisch von der Site entfernt und archiviert werden. Ebenso können Inhalte oder Seiten, die ab einem bestimmten Datum veröffentlicht werden sollen, zur Veröffentlichung hinterlegt werden.
+
+Externe Datenquellen für Bilder oder andere Mediadateien können über Platzhalter eingebunden werden.
+
+Die Einbindung von Module ermöglicht Suchfunktionen über die Site.
+
+Eine Besonderheit dieses CMS ist eine Jobfunktion. In regelmäßigen Zeitabständen ablaufende Jobs sorgen dafür, dass Änderungen in der Datenbank, die eingebundene Daten betreffen (z.B. Kontakt- oder Raumdaten), einen automatisierten Prozess in Gang setzen, der die entsprechenden Seiten neu aus der Vorlage rendert und mit einer neuen Versionsnummer versehen, widerum als statische Seiten abspeichert. Je nach Volatilität der Daten kann die Frequenz der einzelnen Jobs angepasst werden. Natürlich können diese Jobs auch per Hand angestossen werden, wenn zum Beispiel ein Umbau oder ein Umzug multiple Änderungen notwendig gemacht hat. Dieselbe Jobfunktion sorgt auch dafür, dass Beiträge mit zeitlicher Begrenzung, regelmäßig in die Seiten eingepflegt, bzw. aus den Seiten gelöscht werden.
+
+
