@@ -1,1 +1,22 @@
-ich versuche heut abend was dafür zu schreiben...
+Problemanalyse: (30 Stunden)
+   1. Entwicklung eines detailierten Konzepts der Funktionalitäten des Gesamtsystems
+   2. Erstellen und abstimmen von Arbeitsablaufsplänen der Redakteure 
+
+Entwicklung: (100 Stunden)
+   1. Entwickeln der Datenbank unter Berücksichtigung der Funktionalitäten 
+   2. Entwickeln eines Applikationsprototypen zur Simulation des Backends
+   3. Erstellen von Designbeispielen für das spätere Frontend
+
+Inbetriebnahme und Test: (30 Stunden)
+   1. Implementierung der Datenbank auf dem ORACLE Datenbankserver
+   2. Erstellung von Demodaten für die Testläufte
+   3. Ausführliche Tests der Datenbank unter Verwendung des Applikationsprototypen
+	
+Nachbesserung und Dokumentation: (50 Stunden)
+   1. Fehlerkorrekturen und Nachbesserung
+   2. Entwicklung kleinere Änderungswünsche
+   3. Erstellung einer Dokumentation der Datenbank
+   4. Erstellung einer Anleitung für die reibungslose Entwicklung eines Anwendungsprogramms auf der Basis der Datenbanklösung
+
+
+(Die Stunden habe ich einfach mal so gewählt.)
