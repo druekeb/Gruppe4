@@ -14,7 +14,6 @@ Backend
 	- Versionen des Artikels ansehen
 	- Archiviern des Artikels
 	- Löschen eines Artikels
-         - Erstellen/Bearbeiten von Textbausteinen
 	Irgendwo muss es dann auch eine Option "neuen Beitrag erstellen" geben.
 	Alternativ könnte man auch diese Optionen in einem letzten Menüpunkt unterbringen, der nur dann sichtbar wird, wenn man als Redakteur eingeloggt ist.
 
