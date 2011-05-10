@@ -1,0 +1,9 @@
+﻿Erläuterungen zum ER-Diagramm
+
+MENUBAUM kann durch zuweisung der parent_menubaum_id einen gerichteten Graphen darstellen (die Anwendung sollte dafür sorgen, dass dieser azyklisch bleibt). Der Graph kann mehrere Wurzeln haben um z.B. verschiedene Menus darzustellen (z.B. Menu an der Seite, oben, rechts)
+
+"gewicht" wird von mehrern Entities verwendet um die Sortierung zu erleichtern (Position innerhalb eines Menus)
+
+MARKUPUPDATE wird verwendet um festzuhalten welche Artikel neu versioniert und gerendert werden müssen wenn etwas in der Struktur der FU ändert. Diese Tabelle wird vom Anwendungsprogramm während des parsens gepflegt.
+
+ARTIKELVERSION enthält sowohl die Version des Textes mit markup als auch eine Version in der das markup ersetzt wurde. Dadurch kann eine konsistente Historie erhalten werden ohne die Möglichkeit eine neue Version von jeder beliebigen vergangenen Version zu erstellen zu beeinträchtigen.
