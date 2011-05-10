@@ -10,4 +10,5 @@ Der Redakteur wählt einen Artikel zur Bearbeitung. Er nimmt Änderungen am Inha
 Ein Artikel, der nicht mehr angezeigt werden soll, wenn er nicht mehr aktuell ist (z. B. eine Klausurankündigung) soll angelegt werden. Die Schritte ensprechen zunächst denen im Szenario "neuen Artikel anlegen". Zusätzlich bestimmt der Redakteur ein Ablaufdatum, nach dem der Artikel automatischt archiviert wird.
 
 
-
+- Szenario neuen Redakteur registrieren
+Der Administrator legt ein neues Benutzerkonto für einen Redakteur an. Er vergibt Rechte, die festlegen, zu welchen Operationen (z. B. neue Artikel anlegen, Artikel bearbeiten, freigeben etc.) der neue Redakteur autorisiert ist. Der Redakteur loggt sich am System ein, indem er sich mit Benutzername und Passwort authentifiziert.
