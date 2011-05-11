@@ -1,0 +1,109 @@
+Glossar
+-------
+
+
+ARTIKEL: 
+	Aritkel sind Textdokumente welche die einzelnen Informationsteile des CMS darstellen.
+
+RENDERN:
+	Unter dem "rendern" eines ARTIKELS wird das Erstellen einer HTML-Version eines ARTIKELS verstanden, 
+	indem im  ungerenderten ARTIKEL vorkommende MARKUPS interpretiert und textlich ersetzt werden.
+
+MARKUP:
+	MARKUPs sind Anweisungen (CMS tags) die im ungerenderten ARTIKEL vom REDAKTEUR eingefügt werden 
+	können um auf dynamische Daten, z.B. Daten aus der STRUKTUR DER FERNUNI, als auch auf externe 
+	Daten, z.B. Links und Grafiken, verweisen zu können.
+
+ARTIKELVERSION:
+	Die Version eines ARTIKELS enthält sowohl eine ungerenderte Version des Textes mit MARKUP 
+	als auch eine gerenderte HTML-Version des Textes. 
+
+VERSIONIERUNG:
+	Neue Artikelversionen werden nach dem Bearbeiten des entsprechenden 
+	ARTIKELS oder nach Durchführung des MARKUPUPDATE-PROZESSES angelegt. 
+	Dabei werden die vorherigen  Versionen archiviert.
+
+TEMPLATES: 
+	Templates sind Artikelvorlagen die das Erstellen von Artikeln erleichtern und die Einhaltung eines
+	durchgehenden Designs gewährleisten soll. Beispielsweise sind Templates für Klausurankündigungen 
+	oder Praktikumsausschreibungen denkbar.
+
+ARTIKELTYP
+	Der Typ eines ARTIKELS ist entweder "statisch" oder "termingebunden".
+	Bei einem "termingebundenen" ARTIKEL muss eine ARTIKELGÜLTIGKEIT festgelegt werden.
+	Dazu werden beim Editieren eines Artikels entsprechende Eingabefelder zur Verfügung gestellt.
+
+ARTIKELGÜLTIGKEIT:
+	Die Artikelgültigkeit definiert das Zeitfenster indem der Artikel im CMS sichtbar ist und 
+	besteht aus dem VERÖFFENTLICHUNGSDATUM und dem ABLAUFSDATUM eines ARTIKELS.
+
+ABLAUFDATUM:
+	Das Ablaufdatum bestimmt den Zeitpunkt der ARCHIVIERUNG eines Artikels sowie seines Entfernen aus 
+	dem MENÜBAUM.
+
+VERÖFFENTLICHUNGSDATUM:
+	Das Veröffentlichungsdatum eines Artikels bestimmt den Zeitpunkt ab dem ein Artikel im CMS 
+	sichtbar ist.
+
+VERÖFFENTLICHUNG:
+	Nach dem Editieren eines Artikels kann dieser zur Veröffentlichung freigegeben werden.
+	Dieser wird seiner Kategorie entsprechend im Menüpunkt eingeordnet und wird je nach Artikeltyp 
+	unmittelbar oder an seinem Veröffentlichungsdatum im CMS sichtbar.
+
+VORSCHAUFUNKTION:
+	Eine Vorschau-Funktion erlaubt die Kontrolle der editierten Seite im Kontext der Seite vor der 
+	VERÖFFENTLICHUNG.
+
+ARCHIVIERUNG:
+	Die Archivierung eines Artikels wird automatisch nach Erreichen des ABLAUFDATUMS oder bei einer 
+	VERSIONIERUNG durchgeführt.
+
+KATEGORIE:
+	Die Kategorie eines ARTIKELs definiert die Position des Artikels im MENÜBAUM.
+	
+MENÜBAUM: 
+	Stellt die hierarchische Struktur der Navigationsleisten dar.
+
+REDAKTEUR:
+	Redaktuere sind ausgewählte Mitarbeiter der Fernuni, die ARTIKEL bearbeiten können.
+
+RECHTEVERWALTUNG: 
+	Die Anwendung unterstützt eine Rechteverwaltung, so dass den REDAKTEUREN nur die ihnen erlaubten
+	Funktionalität und Zugriffsmöglichkeiten zur Verfügung gestellt wird.
+
+WORKFLOW:
+	Der Publishing-Prozess ist als Workflow realisiert. Eine erweiterte Anforderung wäre eine 
+	Beteiligung mehrerer REDAKTEURE an der Bearbeitung einer Seite.
+
+ADMINISTRATOR:
+	Der Administrator ist ein Mitarbeiter der Fernuni der Maintenance-Funktionen durchführen kann.
+
+MAINTENANCE-FUNKTIONEN
+	Zu den Maintenance-Funktionen gehören 
+	die Verwaltung der REDAKTEURE, 
+	die Verwaltung der STRUKTUR DER FERNUNI  wie auch 
+	die Verwaltung des MENÜBAUMS.
+
+MARKUPUPDATE-PROZESSES:
+	Dieser Prozess wird durchgeführt wenn sich die STRUKTUR DER FERNUNI durch die PFLEGEFUNKTION 
+	des ANWENDUNGSPROGRAMMES ändert. Der Prozess VERSIONIERT alle in der MARKUPUPDATE-Tabelle 
+	aufgeführten ARTIKEL.
+
+MARKUPUPDATE-TABELLE:
+	In der MARKUPDATE-Tabelle wird festgehalten welche Artikel neu versioniert und gerendert werden
+	müssen wenn sich etwas in der Struktur der Fernuni ändert. 
+
+STRUKTUR DER FERNUNI:
+	Besteht aus den Entitäten FAKULTÄT, LEHRGEBIET, KURS, MITARBEITER des ER-Diagramm.
+	
+ANWENDUNGSPROGRAM:
+	das Content Managment System (CMS) welches aus den zwei Schichten FRONTEND und BACKEND besteht.
+
+FRONTEND:
+	Das Frontend liefert die statischen (vorgerenderten) HTML-Seiten und sollte eine Suchfunktion 
+	anbieten sowie die Möglichkeit bieten in das BACKEND zu wechseln.
+
+BACKEND:
+	Das Backend erlaubt den REDAKTEUREN ARTIKEL zu bearbeiten. Dabei erscheinen die HTML-Seiten wie 
+	im Frontend mit dem Unterschied, dass zusätzliche Menüpunkte eine Bearbeitung erlauben. Außerdem 
+	werden auch ARTIKEL angezeigt, die noch nicht veröffentlicht worden sind.
