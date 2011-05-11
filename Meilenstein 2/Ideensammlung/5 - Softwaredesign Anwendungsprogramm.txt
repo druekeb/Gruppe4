@@ -1,28 +1,51 @@
 Allgemeines
 Das Anwendungsprogramm ist ein statisches Content Management System
-(CMS), das heißt,die einzelnen Webseiten werden durch das System erzeugt und als
-statische Datei in der Datenbank abgelegt. Dieses Vorgehen garantiert zum einen
-hohe Auslieferungsgeschwindigkeit der angeforderten Seiten und zum anderen
-erleichtert es die Versionierung, indem bei jeder Änderung einer Seite eine
-Versionsnummer vergeben werden kann. So kann jederzeit auf eine vorherige
-Version der Seiten zugegriffen werden.
+(CMS), vorzugsweise als Webanwendung in PHP programmiert, das auf eine OracleDB
+aufsetzt. Die Seitenbestandteile (Formatvorlagen, Texte, DatenbankObjekte)
+werden in der Datenbank abgelegt. Zur Veröffentlichung einer Seite wird diese
+als statische Seite aus ihren Bestandteilen durch das Anwendungsprogramm
+gerendert und mit einer Versionsnummer versehen in der Datenbank abgelegt.
+Dieses Vorgehen garantiert zum einen hohe Auslieferungsgeschwindigkeit der
+angeforderten Seiten und zum anderen erleichtert es die Versionierung, indem bei
+jeder Änderung einer Seite eine Versionsnummer vergeben werden kann. So kann
+jederzeit auf eine vorherige Version der Seiten zugegriffen werden.
+
+Automatische Aktualisierung der Website bei DB-Updates
+Bei den Bestandteilen der Seiten, die in der Datenbank gespeichert sind,
+handelt es einerseits um explizit zu der Seite gehörige Elemente (z.B. Artikel)
+und andererseits um Attribute von Datenbankobjekten (z.B. die
+email-Adresse eines Mitarbeiters), die zur Vermeidung von Redundanz nur einmal
+in einer entsprechenden Tabelle (z.B. Mitarbeiter) gespeichert werden. Neben
+der Redundanzvermeidung bieten eingebundene Datenbankobjekte den Vorteil, dass
+dem Redakteur Auswahlelemente zur Verfügung gestellt werden können bei der
+Editierung der Seite. Außerdem kann bei der Änderung eines Datenbankobjektes
+eine automatische Kontrolle stattfinden, ob dieses Objekt in Seiten
+der Webpräsenz eingebunden ist. Ist das der Fall, sollen alle Seiten, die dieses
+Objekt einbinden, neu gerendert und mit einer neuen Versionsnummer versehen,
+veröffentlicht werden.
 
 Rechteverwaltung
-Die Anwendung unterstützt eine Rechteverwaltung, so dass dem Anwender nach dem
-Login die entsprechende Funktionalität, die seinen Rollen entspricht, zur
-Verfügung gestellt wird.
+Die Anwendung verlangt beim Start eine Anmeldung (Login mit Username,
+Passwort). Die Rechteverwaltung kennt zwei Rollen (Administrator und
+Redakteur). Wünschenswert ist eine Verfeinerung, die es erlaubt, dem
+Redakteur unterschiedliche Bereiche des Menübaums zuzuweisen. In diesen
+Bereichen (z.B. einem Fachbereich) steht dann die redaktionelle
+Funktionalität (Erstellen und Bearbeiten von Seiten) zur Verfügung.
 
 Workflow
 Der Publishing-Prozess ist als Workflow realisiert. Eine erweiterte Anforderung
-wäre eine Beteiligung mehrerer Personen an der Edition einer Seite.
+wäre eine zwingende Beteiligung mehrerer Personen an der Veröffentlichung
+einer Seite.
 
 Vorschaufunktion
 Eine Vorschau-Funktion erlaubt die Kontrolle der editierten Seite im Kontext der
-Site vor der Veröffentlichung.
+Site vor der Veröffentlichung. Dazu läuft ein einfacher Webserver im
+Anwendungsporgramm.
 
 Templates
-Durch die Anwendung werden verschiedene Templates für Einzelseiten zur Verfügung
-gestellt, so dass die Einhaltung eines durchgehenden Designs gewährleistet ist.
+Durch die Anwendung werden verschiedene Templates für Seiten zur Verfügung
+gestellt, so dass die Einhaltung eines durchgehenden Designs gewährleistet
+ist. Die Templates werden ebenfalls in der Datenbank gespeichert.
 
 Gültigkeitsdauer für Seiten
 Ein Content-Life-Cycle-Management sorgt dafür, dass Inhalte, die mit zeitlicher
@@ -40,7 +63,8 @@ Die Einbindung von Modulen ermöglicht erweiterte Funktionalität, z.B.
 Suchfunktionen über die Site.
 
 Spezielle Anforderungen
-Eine Besonderheit dieses CMS ist eine Jobfunktion. In regelmäßigen Zeitabständen
+Eine Besonderheit dieses CMS ist ein Listener, der bei Änderung von 
+Jobfunktion. In regelmäßigen Zeitabständen
 ablaufende Jobs sorgen dafür, dass Änderungen in der Datenbank, die eingebundene
 Daten betreffen (z.B. Kontakt- oder Raumdaten), einen automatisierten Prozess in
 Gang setzen, der die entsprechenden Seiten neu aus der Vorlage rendert und mit
