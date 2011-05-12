@@ -3,24 +3,24 @@ Glossar
 
 
 ABLAUFDATUM:
-	Das Ablaufdatum bestimmt den Zeitpunkt der ARCHIVIERUNG eines Artikels sowie seines Entfernen aus 
+	Das ABLAUFDATUM bestimmt den Zeitpunkt der ARCHIVIERUNG eines Artikels sowie seines Entfernens aus
 	dem MENÜBAUM.
-
+	
 ADMINISTRATOR:
-	Der Administrator ist ein Mitarbeiter der Fernuni der Maintenance-Funktionen durchführen kann.
+	Der ADMINISTRATOR ist ein Mitarbeiter der Fernuni der Maintenance-Aufgaben durchführen kann.
 
 ANWENDUNGSPROGRAM:
 	das Content Managment System (CMS) welches aus den zwei Schichten FRONTEND und BACKEND besteht.
 
 ARCHIVIERUNG:
-	Die Archivierung eines Artikels wird automatisch nach Erreichen des ABLAUFDATUMS oder bei einer 
+	Die ARCHIVIERUNG eines Artikels wird automatisch nach Erreichen des ABLAUFDATUMS oder bei einer 
 	VERSIONIERUNG durchgeführt.
 
 ARTIKEL: 
-	Aritkel sind Textdokumente welche die einzelnen Informationsteile des CMS darstellen.
+	ARTIKEL sind Textdokumente, welche die einzelnen Informationsteile des CMS darstellen.
 
 ARTIKELGÜLTIGKEIT:
-	Die Artikelgültigkeit definiert das Zeitfenster indem der Artikel im CMS sichtbar ist und 
+	Die ARTIKELGÜLTIGKEIT definiert das Zeitfenster, in dem der Artikel im CMS sichtbar ist und 
 	besteht aus dem VERÖFFENTLICHUNGSDATUM und dem ABLAUFSDATUM eines ARTIKELS.
 
 ARTIKELTYP
@@ -33,77 +33,82 @@ ARTIKELVERSION:
 	als auch eine gerenderte HTML-Version des Textes.
 
 BACKEND:
-	Das Backend erlaubt den REDAKTEUREN ARTIKEL zu bearbeiten. Dabei erscheinen die HTML-Seiten wie 
-	im Frontend mit dem Unterschied, dass zusätzliche Menüpunkte eine Bearbeitung erlauben. Außerdem 
+	Das BACKEND erlaubt den REDAKTEUREN, ARTIKEL zu bearbeiten. Dabei erscheinen die HTML-Seiten wie 
+	im FRONTEND mit dem Unterschied, dass zusätzliche Menüpunkte eine Bearbeitung erlauben. Außerdem 
 	werden auch ARTIKEL angezeigt, die noch nicht veröffentlicht worden sind.
 
+ER-DIAGRAMM:
+	Das Entity-Relationship-Diagramm, das alle Tabellen der Datenbank mit ihren Attributen und Beziehungen
+	untereinander darstellt.
+
+ERSCHEINUNGSDATUM:
+	Das ERSCHEINUNGSDATUM eines Artikels bestimmt den Zeitpunkt, ab dem ein Artikel über das CMS 
+	ausgeliefert wird.
+
 FRONTEND:
-	Das Frontend liefert die statischen (vorgerenderten) HTML-Seiten und sollte eine Suchfunktion 
-	anbieten sowie die Möglichkeit bieten in das BACKEND zu wechseln.
+	Das FRONTEND liefert die statischen (vorgerenderten) HTML-Seiten und sollte eine Suchfunktion 
+	anbieten sowie die Möglichkeit, in das BACKEND zu wechseln.
 
 KATEGORIE:
-	Die Kategorie eines ARTIKELs definiert die Position des Artikels im MENÜBAUM.
+	Die KATEGORIE eines ARTIKELs definiert die Position des Artikels im MENÜBAUM.
 
 MAINTENANCE-FUNKTIONEN
-	Zu den Maintenance-Funktionen gehören 
+	Zu den MAINTENANCE-FUNKTIONEN gehören 
 	die Verwaltung der REDAKTEURE, 
 	die Verwaltung der STRUKTUR DER FERNUNI  wie auch 
 	die Verwaltung des MENÜBAUMS.
 
 MARKUP:
-	MARKUPs sind Anweisungen (CMS tags) die im ungerenderten ARTIKEL vom REDAKTEUR eingefügt werden 
-	können um auf dynamische Daten, z.B. Daten aus der STRUKTUR DER FERNUNI, als auch auf externe 
+	MARKUPs sind Anweisungen (CMS tags), die im ungerenderten ARTIKEL vom REDAKTEUR eingefügt werden 
+	können, um auf dynamische Daten, z.B. Daten aus der STRUKTUR DER FERNUNI, als auch auf externe 
 	Daten, z.B. Links und Grafiken, verweisen zu können.
 
-MARKUPUPDATE-PROZESSES:
-	Dieser Prozess wird durchgeführt wenn sich die STRUKTUR DER FERNUNI durch die PFLEGEFUNKTION 
-	des ANWENDUNGSPROGRAMMES ändert. Der Prozess VERSIONIERT alle in der MARKUPUPDATE-Tabelle 
+MARKUP-UPDATE-PROZESS:
+	Dieser Prozess wird durchgeführt, wenn sich in der STRUKTUR DER FERNUNI (durch die PFLEGEFUNKTION 
+	des ANWENDUNGSPROGRAMMES) Änderungen ergeben. Der Prozess VERSIONIERT alle in der MARKUP-UPDATE-TABELLE 
 	aufgeführten ARTIKEL.
 
-MARKUPUPDATE-TABELLE:
-	In der MARKUPDATE-Tabelle wird festgehalten welche Artikel neu versioniert und gerendert werden
-	müssen wenn sich etwas in der Struktur der Fernuni ändert.
+MARKUP-UPDATE-TABELLE:
+	In der MARKUP-UPDATE-TABELLE wird festgehalten, welche Artikel neu versioniert und gerendert werden
+	müssen, wenn sich etwas in der STRUKTUR DER FERNUNI ändert.
 
 MENÜBAUM: 
 	Stellt die hierarchische Struktur der Navigationsleisten dar.
 
 RECHTEVERWALTUNG: 
 	Die Anwendung unterstützt eine Rechteverwaltung, so dass den REDAKTEUREN nur die ihnen erlaubten
-	Funktionalität und Zugriffsmöglichkeiten zur Verfügung gestellt wird.
+	Funktionalitäten und Zugriffsmöglichkeiten zur Verfügung gestellt werden.
 
 REDAKTEUR:
-	Redaktuere sind ausgewählte Mitarbeiter der Fernuni, die ARTIKEL bearbeiten können.
+	REDAKTEURE sind ausgewählte Mitarbeiter der Fernuni, die ARTIKEL bearbeiten können.
 
 RENDERN:
 	Unter dem "rendern" eines ARTIKELS wird das Erstellen einer HTML-Version eines ARTIKELS verstanden, 
 	indem im  ungerenderten ARTIKEL vorkommende MARKUPS interpretiert und textlich ersetzt werden.
 
 STRUKTUR DER FERNUNI:
-	Besteht aus den Entitäten FAKULTÄT, LEHRGEBIET, KURS, MITARBEITER des ER-Diagramm.
+	Besteht aus den Entitäten FAKULTÄT, LEHRGEBIET, KURS, MITARBEITER des ER-DIAGRAMMS.
 
 TEMPLATES: 
-	Templates sind Artikelvorlagen die das Erstellen von Artikeln erleichtern und die Einhaltung eines
-	durchgehenden Designs gewährleisten soll. Beispielsweise sind Templates für Klausurankündigungen 
-	oder Praktikumsausschreibungen denkbar.
+	Templates sind Artikelvorlagen, die das Erstellen von Artikeln erleichtern und die Einhaltung eines
+	durchgehenden Designs gewährleisten sollen. Neben den Vorlagen für die allgemeinen Informations- und
+	Übersichtsseiten sind beispielsweise Templates für Klausurankündigungen oder Praktikumsausschreibungen
+	denkbar.
 
 VERÖFFENTLICHUNG:
-	Nach dem Editieren eines Artikels kann dieser zur Veröffentlichung freigegeben werden.
-	Dieser wird seiner Kategorie entsprechend im Menüpunkt eingeordnet und wird je nach Artikeltyp 
-	unmittelbar oder an seinem Veröffentlichungsdatum im CMS sichtbar.
-
-VERÖFFENTLICHUNGSDATUM:
-	Das Veröffentlichungsdatum eines Artikels bestimmt den Zeitpunkt ab dem ein Artikel im CMS 
-	sichtbar ist.
+	Nach dem Editieren eines Artikels kann dieser zur Veröffentlichung freigegeben werden. Der Artikel wird
+	dann seiner Kategorie entsprechend im Menü eingeordnet und entweder unmittelbar oder an seinem 
+	Erscheinungsdatum (und bis zu seinem eventuellen ABLAUFDATUM) über das CMS ausgeliefert.
 
 VERSIONIERUNG:
 	Neue Artikelversionen werden nach dem Bearbeiten des entsprechenden 
 	ARTIKELS oder nach Durchführung des MARKUPUPDATE-PROZESSES angelegt. 
 	Dabei werden die vorherigen  Versionen archiviert.
 
-VORSCHAUFUNKTION:
-	Eine Vorschau-Funktion erlaubt die Kontrolle der editierten Seite im Kontext der Seite vor der 
+VORSCHAU-FUNKTION:
+	Eine VORSCHAU-FUNKTION erlaubt die Kontrolle der editierten Seite im Kontext der Site vor der 
 	VERÖFFENTLICHUNG.
 
 WORKFLOW:
-	Der Publishing-Prozess ist als Workflow realisiert. Eine erweiterte Anforderung wäre eine 
+	Der Publishing-Prozess ist als WORKFLOW realisiert. Eine erweiterte Anforderung wäre eine 
 	Beteiligung mehrerer REDAKTEURE an der Bearbeitung einer Seite.
