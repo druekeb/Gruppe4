@@ -1,12 +1,10 @@
 ﻿Automatische Aktualisierung bei Änderungen der FernUni Struktur
 ===============================================================
+Automatisches Update der Struktur der FernUni in der CMS Datenbank von externen Datenquellen (Datenbank).
+Die Informationen werden verglichen und aktualisiert, Artikel automatisch neu gerendert und versioniert wenn nötig.
+Die ist durchführbar, aber ausserhalb des momentanen Projekts.
 
-Ansatz 1: Das Answendungsprogramm speichert in einer Tabelle welche Daten in welchen Artikeln verwendet werden. Wenn sich die Daten ändern werden diese Artikel neu gerendert und versioniert.
-Vorteile: minimaler Aufwand bei Updates, schnelles Update
-Nachteile: komplizierte Verwaltung der Tabelle mit der Daten-Artikel Beziehung, neue Markupbefehle oder Daten schwerer integrierbar.
-
-Ansatz 2: Ein automatischer oder manuell ausgelöster Update Prozess rendert _alle_ Artikel neu und vergleicht das Ergebnis mit der aktuell gerenderten Version. Wenn es einen Unterschied gibt, wird neu versioniert.
-Vorteile: unkompliziert, keine zusätzliche Verwaltung nötig, neue Markupbefehle oder Daten können einfach integriert werden
-Nachteile: unnötiges renderen von Artikeln, kaum in Echtzeit möglich bei vielen Artikeln.
-
-Ansatz 1 ist möglich aber nicht praktikabel ohne die Markups stark einzuschränken. Sollen nur einfach Marrkup Anweisungen möglich sein, so ist Ansatz 1 Ansatz 2 jedoch weit überlegen.
+Komplexes Markup
+================
+Komplexe Markups, z.B. alle Kurse einer Fakultät die "3D" im Namen haben, sind wünschenswert.
+Diese bringen aber erhebliche Probleme für die automatische Aktualisierung mit sich und sind im aktuellen Datenbankentwurf nicht möglich.
