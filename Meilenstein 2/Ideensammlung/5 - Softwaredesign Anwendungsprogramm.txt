@@ -1,80 +1,69 @@
-Allgemeines
+Anwendungsprogramm als statitsches Content Management System
 Das Anwendungsprogramm ist ein statisches Content Management System
 (CMS), vorzugsweise als Webanwendung in PHP programmiert, das auf eine OracleDB
-aufsetzt. Die Seitenbestandteile (Formatvorlagen, Texte, DatenbankObjekte)
-werden in der Datenbank abgelegt. Zur Veröffentlichung einer Seite wird diese
+aufsetzt. Die Seitenbestandteile (Texte, Links, Medien und Markups) werden in
+der Backend-Datenbank abgelegt. Zur Veröffentlichung einer Seite wird diese
 als statische Seite aus ihren Bestandteilen durch das Anwendungsprogramm
 gerendert und mit einer Versionsnummer versehen in der Datenbank abgelegt.
-Dieses Vorgehen garantiert zum einen hohe Auslieferungsgeschwindigkeit der
-angeforderten Seiten und zum anderen erleichtert es die Versionierung, indem bei
-jeder Änderung einer Seite eine Versionsnummer vergeben werden kann. So kann
-jederzeit auf eine vorherige Version der Seiten zugegriffen werden.
+Dieses Vorgehen garantiert zum einen eine hohe Auslieferungsgeschwindigkeit der
+vom Webserver angeforderten Seiten, weil diese bereits gerendert sind, und zum
+anderen erleichtert es die Versionierung, indem bei jeder Änderung einer Seite
+eine Versionsnummer vergeben wird. So kann jederzeit auf eine vorherige Version
+der Seiten zugegriffen werden.
 
-Automatische Aktualisierung der Website bei DB-Updates
-Bei den Bestandteilen der Seiten, die in der Datenbank gespeichert sind,
-handelt es einerseits um explizit zu der Seite gehörige Elemente (z.B. Artikel)
-und andererseits um Attribute von Datenbankobjekten (z.B. die
-email-Adresse eines Mitarbeiters), die zur Vermeidung von Redundanz nur einmal
-in einer entsprechenden Tabelle (z.B. Mitarbeiter) gespeichert werden. Neben
-der Redundanzvermeidung bieten eingebundene Datenbankobjekte den Vorteil, dass
-dem Redakteur Auswahlelemente zur Verfügung gestellt werden können bei der
-Editierung der Seite. Außerdem kann bei der Änderung eines Datenbankobjektes
-eine automatische Kontrolle stattfinden, ob dieses Objekt in Seiten
-der Webpräsenz eingebunden ist. Ist das der Fall, sollen alle Seiten, die dieses
-Objekt einbinden, neu gerendert und mit einer neuen Versionsnummer versehen,
-veröffentlicht werden.
+Einbindung dynamischer Inhalte bei der Editierung der Artikel
+Bei den Bestandteilen der Artikel, die in der Datenbank gespeichert sind,
+handelt es um einerseits um statische Elemente wie Texte und Links zu anderen
+Seiten. Und andererseits um dynamische Elemente, repräsentiert durch sogenannte
+Markups, als Platzhalter für Datenbank-Elemente, die erst beim Rendern aus der
+Datenbank abgefragt werden. Dies können Namen, Telefonnummern von Mitarbeitern
+oder Medien (Bilder, Filme) sein. 
+Damit wird Redundanz vermieden, weil Daten nur an einer Stelle zentral 
+gespeichert werden und Konsistenz gewährleistet, weil alle Artikel auf dieselbe,
+aktuelle Version eines Datums zugreifen.
+Eingebundene Datenbankobjekte bieten außerdem den Vorteil, dass dem Redakteur
+Auswahlelemente (z.B. für Namen, Raumnummern) zur Verfügung gestellt werden
+können bei der Editierung der Seite.
+
+Automatische Aktualisierung bei Datenbank-Updates
+Bei einem Update auf einen Datensatz in der Datenbank (z.B. die Änderung
+einer Telefonnummer), wird kontrolliert, ob Artikel diesen Datensatz als Markup
+einbinden und gegebenenfalls werden alle betroffenen Seiten der Webpräsenz neu
+gerendert und, versehen mit einer neuen Versionsnummer, veröffentlicht.
 
 Rechteverwaltung
 Die Anwendung verlangt beim Start eine Anmeldung (Login mit Username,
 Passwort). Die Rechteverwaltung kennt zwei Rollen (Administrator und
-Redakteur). Wünschenswert ist eine Verfeinerung, die es erlaubt, dem
-Redakteur unterschiedliche Bereiche des Menübaums zuzuweisen. In diesen
-Bereichen (z.B. einem Fachbereich) steht dann die redaktionelle
-Funktionalität (Erstellen und Bearbeiten von Seiten) zur Verfügung.
+Redakteur). Dem Redakteur können Bereiche der Menüstruktur zugewiesen 
+werden. In diesen Bereichen (z.B. einem Fachbereich) steht ihm dann die
+redaktionelle Funktionalität (Erstellen und Bearbeiten von Seiten) zur
+Verfügung.
 
 Workflow
-Der Publishing-Prozess ist als Workflow realisiert. Eine erweiterte Anforderung
-wäre eine zwingende Beteiligung mehrerer Personen an der Veröffentlichung
-einer Seite.
-
-Vorschaufunktion
-Eine Vorschau-Funktion erlaubt die Kontrolle der editierten Seite im Kontext der
-Site vor der Veröffentlichung. Dazu läuft ein einfacher Webserver im
-Anwendungsporgramm.
+Der Publishing-Prozess ist als Workflow realisiert. Ein Artikel wird neu
+erstellt oder ein bestehender Artikel wird aus der Datenbank zur Bearbeitung
+geladen. Anschließend kann der Artikel editiert werden. Zur Begutachtung des
+Ergebnisses wird die Seite gerendert und steht dann zur Vorschau zur
+Verfügung. Anschließend kann der Artikel entweder weiter bearbeitet oder aber 
+veröffentlicht werden. Bei der Veröffentlichung wird der Artikel automatisch
+versioniert. Eine mögliche Anforderung wäre eine zwingende Beteiligung mehrerer
+Personen an der Veröffentlichung eines Artikels.
 
 Templates
-Durch die Anwendung werden verschiedene Templates für Seiten zur Verfügung
-gestellt, so dass die Einhaltung eines durchgehenden Designs gewährleistet
-ist. Die Templates werden ebenfalls in der Datenbank gespeichert.
+Die Anwendung stellt verschiedene Templates zur Erstellung neuer Artikel
+zur Verfügung. Damit wird einerseits für den Redakteur das Erstellen eines
+Artikels vereinfacht und andererseits wird die Einhaltung eines durchgehenden
+Designs gewährleistet.
 
-Gültigkeitsdauer für Seiten
-Ein Content-Life-Cycle-Management sorgt dafür, dass Inhalte, die mit zeitlicher
+Content-Life-Cycle-Management
+Das Content-Life-Cycle-Management gewährleistet, dass Artikeln eine
+Gültigkeitsdauer zugewiesen werden kann. Inhalte, die mit zeitlicher
 Begrenzung veröffentlicht werden (z.B.Ankündigung von Terminen, Abgabe von
-Online-Dokumenten) nach Ablaufdatum automatisch von der Site entfernt und
-archiviert werden. Ebenso können Inhalte oder Seiten, die ab einem bestimmten
-Datum veröffentlicht werden sollen, zur Veröffentlichung hinterlegt werden.
-
-Einbindung externer Datenquellen
-Externe Datenquellen für Bilder oder andere Mediadateien können über Platzhalter
-eingebunden werden.
+Online-Dokumenten) werden nach Ablaufdatum automatisch von der Site entfernt und
+archiviert. Ebenso kann man Artikel, die ab einem bestimmten Datum
+veröffentlicht werden sollen, zur Veröffentlichung hinterlegen und diese werden
+dann automatisch zum betreffenden Zeitpunkt gerendert und veröffentlicht.
 
 Erweiterte Funktionalität
 Die Einbindung von Modulen ermöglicht erweiterte Funktionalität, z.B.
 Suchfunktionen über die Site.
-
-Spezielle Anforderungen
-Eine Besonderheit dieses CMS ist ein Listener, der bei Änderung von 
-Jobfunktion. In regelmäßigen Zeitabständen
-ablaufende Jobs sorgen dafür, dass Änderungen in der Datenbank, die eingebundene
-Daten betreffen (z.B. Kontakt- oder Raumdaten), einen automatisierten Prozess in
-Gang setzen, der die entsprechenden Seiten neu aus der Vorlage rendert und mit
-einer neuen Versionsnummer versehen, widerum als statische Seiten abspeichert.
-Je nach Volatilität der Daten kann die Frequenz der einzelnen Jobs angepasst
-werden. Natürlich können diese Jobs auch per Hand angestossen werden, wenn zum
-Beispiel ein Umbau oder ein Umzug multiple Änderungen notwendig gemacht hat.
-Dieselbe Jobfunktion sorgt auch dafür, dass Beiträge mit zeitlicher Begrenzung,
-regelmäßig in die Seiten eingepflegt, bzw. aus den Seiten gelöscht werden.
-
-Darstellung der Organisation der Anwendung
-Klassendiagramm zur Veranschaulichung der Kooperation zwischen den Klassen der
-Anwendung und den Relationen der Datenbank.
