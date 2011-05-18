@@ -1,0 +1,10 @@
+﻿Automatische Aktualisierung bei Änderungen der FernUni Struktur
+===============================================================
+Automatisches Update der Struktur der FernUni in der CMS Datenbank von externen Datenquellen (Datenbank).
+Die Informationen werden verglichen und aktualisiert, Artikel automatisch neu gerendert und versioniert wenn nötig.
+Die ist durchführbar, aber ausserhalb des momentanen Projekts.
+
+Komplexes Markup
+================
+Komplexe Markups, z.B. alle Kurse einer Fakultät die "3D" im Namen haben, sind wünschenswert.
+Diese bringen aber erhebliche Probleme für die automatische Aktualisierung mit sich und sind im aktuellen Datenbankentwurf nicht möglich.
