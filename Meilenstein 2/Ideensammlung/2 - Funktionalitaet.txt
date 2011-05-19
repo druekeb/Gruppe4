@@ -1,6 +1,6 @@
 Die Funktionalitäten der drei Schichten.
 
-Das Frontend  soll die Menüstruktur abbilden sowie ein Durchblättern und Suchen ermöglicht.
+Das Frontend  soll die Menüstruktur abbilden sowie ein Durchblättern und Suchen der Artikel ermöglicht.
  
 Die Suchfunktionen sollte eine einfache sowie eine erweiterte Suche erlauben, bei der alle Beiträge nach textlicher Übereinstimmung des Suchbegriffes durchsucht werden. 
 
@@ -21,7 +21,7 @@ unterhalb jeden Artikels angezeigt.
 Ferner wird es eine Option "neuen Artikel erstellen" geben.
 
 Das Editieren eines Artikels erlaubt es dem Redakteur die Atribute des Artikels wie z.B. Erscheinungs- und Ablaufsdatum, Schlagwörter und Kategorie zu definieren und seinen Inhalt zu bestimmen. 
-Durch im Artikeltext eingefügte Markups kann auf interne oder externe Medien, sowie auf Daten der Struktur der Fernuni (Lehrgebiete, Mitarbeiter, Telefonnummern, usw.) verwiesen werden.
+Durch im Artikeltext eingefügte Platzhalter kann auf interne oder externe Medien, sowie durch Markups auf Daten der Struktur der Fernuni (Lehrgebiete, Mitarbeiter, Telefonnummern, usw.) verwiesen werden.
 
 Abschliessend können Artikel zur Veröffentlichung freigegeben oder zur späteren Weiterbearbeitung abgespeichert werden.
 
