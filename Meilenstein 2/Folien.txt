@@ -17,7 +17,7 @@ Folie 2: Funktionalitäten
 
 (Bild: hier könnte man einfach das Bild mit den drei Schichten aus der ersten Präsentation nehmen)
 
-Das Frontend  soll die Menüstruktur abbilden sowie ein Durchblättern und Suchen der Artikel ermöglicht.
+Das Frontend  soll die Menüstruktur abbilden sowie ein Durchblättern und Suchen der Artikel ermöglichen.
  
 Die Suchfunktionen sollte eine einfache sowie eine erweiterte Suche erlauben, bei der alle Beiträge nach textlicher Übereinstimmung des Suchbegriffes durchsucht werden. 
 
@@ -28,14 +28,14 @@ Treffer werden durch die Artikelüberschrift, Datum, Autor und gegebenfalls Kate
 Die erweiterete Suche solle eine Einschränkung der einfachen Suche nach Unterpunkten wie Autor, Datum, Schlagwörter, usw. ermöglichen.
 
 Das Backend stellt dem eingeloggtem Redakteur ein erweitertes Frontend zur Verfügung welches Änderungen an den vorhandenen Artikeln ermöglicht. Dabei werden zusätzliche Operationen wie
-	- Editieren des Artikel 
-	- Versionen des Artikels ansehen
-	- Archiviern des Artikels
-	- Löschen eines Artikels
+	- das Editieren des Artikel 
+	- Zugriff auf ältere Versionen des Artikels
+	- Archivieren des Artikels
+	- sowie Löschen eines Artikels
 unterhalb jeden Artikels angezeigt.
-Ferner wird es eine Option "neuen Artikel erstellen" geben.
+Ferner wird gibt es die Option einen "neuen Artikel zu erstellen".
 
-Das Editieren eines Artikels erlaubt es dem Redakteur die Atribute des Artikels wie z.B. Erscheinungs- und Ablaufsdatum, Schlagwörter und Kategorie zu definieren und seinen Inhalt zu bestimmen. 
+Das Editieren eines Artikels erlaubt es dem Redakteur die Attribute des Artikels wie z.B. Erscheinungs- und Ablaufsdatum, Schlagwörter und Kategorie zu definieren und seinen Inhalt zu bestimmen.
 Durch im Artikeltext eingefügte Platzhalter kann auf interne oder externe Medien, sowie durch Markups auf Daten der Struktur der Fernuni (Lehrgebiete, Mitarbeiter, Telefonnummern, usw.) verwiesen werden.
 
 Abschliessend können Artikel zur Veröffentlichung freigegeben oder zur späteren Weiterbearbeitung abgespeichert werden.
@@ -45,16 +45,24 @@ Die Datenbank ist passiv und bildet das ER-Diagramm ab.
 Zugriff auf die Datenbank findet mittels SQL-Abfragen seitens des Frontends und des Backends statt.
 
 ------------------------------------------------
-Folie 3: Erläuterungen zum ER-Diagramm
+Folie 3a-3d: Erläuterungen zum ER-Diagramm
 ------------------------------------------------
+Folie 3a
+(Bild: ER Diagramm von Carsten (querformat) )
+Kommen wir jetzt zu einigen Details des Datenbankmodells wie wir und es momentan vorstellen.
 
-MENUBAUM kann durch zuweisung der parent_menubaum_id einen gerichteten Graphen darstellen (die Anwendung sollte dafür sorgen, dass dieser azyklisch bleibt). Der Graph kann mehrere Wurzeln haben um z.B. verschiedene Menus darzustellen (z.B. Menu an der Seite, oben, rechts)
+Folie 3b:
+(Flashanimation fokus_menu)
+Die Tabelle MENUBAUM kann durch Zuweisung der parent_menubaum_id einen gerichteten Graphen darstellen. Dieser Graph kann mehrere Wurzeln haben um z.B. verschiedene Menus darzustellen (Menu an der Seite, oben, rechts etc.). Die Anwendung sollte dafür sorgen, das der Graph azyklisch bleibt.
+Einzelne Artikel über die Tabelle MENUARTIKEL an beliebiger Stelle im Menubaum verlinkt werden. Dabei kann die Reihenfolge in der die Artikel augezählt werden über die Eigenschaft "gewicht" geändert werden.
 
-"gewicht" wird von mehrern Entities verwendet um die Sortierung zu erleichtern (Position innerhalb eines Menus)
+Folie 3c:
+(Flashanimation fokus_artikel)
+Zu jedem angelegten Artikel werden alle vorhergehenden Versionen gespeichert, durch benutzung der artikel_id bei Verlinkungen kann immer die aktuellste Version abgerufen werden. Ist ein Artikel bereits abgelaufen oder noch vor dem Erscheinungsdatum, kann die Anwendung einen entsprechenden Hinweis anzeigen. Um zu gewährleisten, das ältere Versionen, die eventuell Markup enthalten, einfach bearbeitet werden können und trotzdem ein Zugriff auf den Artikel so wie er veröffentlicht wurde möglich ist, wird sowohl der Artikel mit Markup also auch der gerenderte Artikel gespeichert.
 
-MARKUPUPDATE wird verwendet um festzuhalten welche Artikel neu versioniert und gerendert werden müssen wenn etwas in der Struktur der FU ändert. Diese Tabelle wird vom Anwendungsprogramm während des parsens gepflegt.
-
-ARTIKELVERSION enthält sowohl die Version des Textes mit markup als auch eine Version in der das markup ersetzt wurde. Dadurch kann eine konsistente Historie erhalten werden ohne die Möglichkeit eine neue Version von jeder beliebigen vergangenen Version zu erstellen zu beeinträchtigen.
+Folie 3d:
+(Flashanimation fokus_fstruktur)
+Ein weiterer Teilbereich der Datenbank bildet die Struktur der FernUni nach, dadurch können Daten wie z.B. Telefonnummern zentral gepflegt werden und müssen nicht manuell in einzelnen Artikeln geändert werden. Die Anwendung merkt sich dazu in der Tabelle MARKUPUPDATE welche Daten in einem Artikel verwendet werden um diese automatisch zu aktualisieren und neu zu versionieren.
 
 ------------------------------------------------
 Folie 4: Zeitplan
@@ -62,42 +70,40 @@ Folie 4: Zeitplan
 
 Kommen wir nun zum Zeitplan dieses Projektes. Der Ablauf 
 ist in die 4 Phasen:
--Problemanalyse,
--Entwicklung,
--Inbetriebnahme und Test,
--Nachbesserung und Dokumentation
+	- Problemanalyse,
+	- Entwicklung,
+	- Inbetriebnahme und Test,
+	- und zuletzt Nachbesserung und Dokumentation
 aufgeteilt. 
 
 In der Problemanalysephase entwickeln wir ein 
-detailliertes Konzept der Funktionalit‰ten des Gesamtsystems.
+detailliertes Konzept der Funktionalitäten des Gesamtsystems.
 In enger Zusammenarbeit mit Ihnen erstellen wir genaue
-Arbeitsablaufpl‰ne damit wir 
-Ihnen ein optimales Datenbankkonzept entwickeln kˆnnen.
-F¸r diese Phase haben wir 50 Stunden vorgesehen.
+Arbeitsablaufpläne damit wir ein optimales Datenbankkonzept entwickeln können.
+Für diese Phase haben wir 50 Stunden vorgesehen.
 
 Der zweite Abschnitt ist die Entwicklung. Hier wird neben 
 der eigentlichen Entwicklung der Datenbank auch ein 
-Applilkationsprototyp zur Simulation des Backends 
-entwickelt. So kann sp‰ter gew‰hrleistet werden, dass unser
-Datenbankkonzept Ihren Anforderungen und W¸nschen
+Applikationsprototyp zur Simulation des Backends 
+entwickelt. So kann später gewährleistet werden, dass unser
+Datenbankkonzept Ihren Anforderungen und Wünschen
 entspricht. Die Entwicklung hat ein Arbeitsvolumen von
 140 Stunden.
-
 
 In der 3. Phase "Inbetriebnahme und Test" werden wir das 
 entwickelte Datenbankkonzept auf dem ORACLE Datenbank-
 Server implementieren. Selbstverst‰ndlich werden auch 
-Demodaten zur Verf¸gung gestellt um ausf¸hrliche Tests
-mit dem Applikationsprototypen durchzuf¸hren, und die
-Funktionalit‰t unter Beweis zu stellen. Hierf¸r haben
+Demodaten zur Verfügung gestellt um ausführliche Tests
+mit dem Applikationsprototypen durchzuführen, und die
+Funktionalität unter Beweis zu stellen. Hierfür haben
 wir 60 Stunden veranschlagt.
 
-Die letzte Phase "Nachbesserung und Dokumentation" ist f¸r
-Nachbesserungen sowie f¸r die Entwicklung kleinerer 
-ƒnderungsw¸nsche gedacht. 
-Damit sp‰ter eine reibungslose Entwicklung eines 
-Anwendungsprogramm gew‰hrleistet ist, wird Ihnen eine
-ausf¸hrliche Dokumentation zur Verf¸gung gestellt.
+Die letzte Phase "Nachbesserung und Dokumentation" ist für
+Nachbesserungen sowie für die Entwicklung kleinerer 
+Änderungswünsche gedacht. 
+Damit später eine reibungslose Entwicklung eines 
+Anwendungsprogramm gewährleistet ist, wird Ihnen eine
+ausführliche Dokumentation zur Verfügung gestellt.
 
 ------------------------------------------------
 Folie 5: Softwaredesign
@@ -175,11 +181,14 @@ Suchfunktionen über die Site.﻿Automatische Aktualisierung bei Änderungen der
 ------------------------------------------------
 Folie 6:  Machbarkeitsabschaetzung
 ------------------------------------------------
-Automatisches Update der Struktur der FernUni in der CMS Datenbank von externen Datenquellen (Datenbank).
-Die Informationen werden verglichen und aktualisiert, Artikel automatisch neu gerendert und versioniert wenn nötig.
-Die ist durchführbar, aber ausserhalb des momentanen Projekts.
+(Bild: Machbarkeitsabschaetzung.png )
+Über den momentan geplanten Funktionsumfang hinaus sind auch noch weitere Funktionen denkbar.
+Dazu zählen z.B. ein automatisches Update der Struktur der FernUni in der CMS Datenbank von einer externen Datenquelle wie etwa einer schon vorhandenen Datenbank.
+Auch komplexes Markup um z.B. alle Kurse einer Fakultät die "3D" im Namen haben aufzulisten und entsprechende Artikel zu verlinken ist denkbar.
 
-Komplexes Markup
-================
-Komplexe Markups, z.B. alle Kurse einer Fakultät die "3D" im Namen haben, sind wünschenswert.
-Diese bringen aber erhebliche Probleme für die automatische Aktualisierung mit sich und sind im aktuellen Datenbankentwurf nicht möglich.Glossar
+Diese Funktionen sind momentan nicht Teil des Entwurfs und würden den Umfang des Projekts erheblich steigern.
+
+Für das automatische Update müssen dazu entsprechende Importfilter erstellt werden die die externen Daten in die CMS interne Struktur importieren. Gleichzeitig müssen Artikel die auf diese Daten zugreifen neu gerendert und versioniert werden.
+Eine Abschätzung des Arbeitsuafwandes ist ohne Informationen über die externen Datenquellen nicht möglich.
+
+Komplexes Markup erschwert die Aktualisierung bei geänderten Strukturdaten. Für sehr flexibles Markup muss u.U. auf ein System zurückgegriffen werden bei dem alle Artikel neu gerendert werden und mit der aktuellen Version verglichen werden um Änderungen festzustellen. Das neu-rendern aller statt nur der betroffenen Artikel bedeutet einen weitaus höheren Rechenaufwand.
