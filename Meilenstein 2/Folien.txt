@@ -1,4 +1,7 @@
+------------------------------------------------
 Folie 1: Szenarien
+------------------------------------------------
+
 Sehr geehrte Damen und Herren, wir möchten Ihnen heute in einem Grobkonzept unsere Vorstellungen zur Entwicklung des Content-Management-Systems für den Webauftritt der Fernuni Hagen präsentieren.
 Zunächst betrachten wir einige Szenarien zur späteren Nutzung des Systems.
 Ein mögliches Szenario ist das verfassen eines neuen Artikels: Dabei wird eine Kategorie, in der der neue Artikel erscheinen soll, vom Redakteur gewählt. Er bestimmt ein Template, dass das spätere Aussehen des Artikels festlegt. Der Redakteur gibt Titel und Inhalt sowie ein Zeitfenster ein, in dem der Artikel auf der Webseite angezeigt werden soll und speichert seine Eingaben. Er gibt den Artikel zur Veröffentlichung frei.
@@ -8,12 +11,175 @@ Auf den Markup-Update-Prozess kommen wir im weiteren Verlauf der Präsentation n
 
 (Bild: Anwendungsfalldiagramm von Carsten)
 
-
+------------------------------------------------
 Folie 2: Funktionalitäten
-...
-
+------------------------------------------------
 
 (Bild: hier könnte man einfach das Bild mit den drei Schichten aus der ersten Präsentation nehmen)
 
+Das Frontend  soll die Menüstruktur abbilden sowie ein Durchblättern und Suchen der Artikel ermöglicht.
+ 
+Die Suchfunktionen sollte eine einfache sowie eine erweiterte Suche erlauben, bei der alle Beiträge nach textlicher Übereinstimmung des Suchbegriffes durchsucht werden. 
 
-...
+Die Ausgabe der Suche erfolgt durch auflisten von bis zu 10 Treffern mit der Möglichkeit weitere Treffer anzusehen. 
+
+Treffer werden durch die Artikelüberschrift, Datum, Autor und gegebenfalls Kategorie sowie den erste drei Zeilen des Inhaltes angezeigt.
+
+Die erweiterete Suche solle eine Einschränkung der einfachen Suche nach Unterpunkten wie Autor, Datum, Schlagwörter, usw. ermöglichen.
+
+Das Backend stellt dem eingeloggtem Redakteur ein erweitertes Frontend zur Verfügung welches Änderungen an den vorhandenen Artikeln ermöglicht. Dabei werden zusätzliche Operationen wie
+	- Editieren des Artikel 
+	- Versionen des Artikels ansehen
+	- Archiviern des Artikels
+	- Löschen eines Artikels
+unterhalb jeden Artikels angezeigt.
+Ferner wird es eine Option "neuen Artikel erstellen" geben.
+
+Das Editieren eines Artikels erlaubt es dem Redakteur die Atribute des Artikels wie z.B. Erscheinungs- und Ablaufsdatum, Schlagwörter und Kategorie zu definieren und seinen Inhalt zu bestimmen. 
+Durch im Artikeltext eingefügte Platzhalter kann auf interne oder externe Medien, sowie durch Markups auf Daten der Struktur der Fernuni (Lehrgebiete, Mitarbeiter, Telefonnummern, usw.) verwiesen werden.
+
+Abschliessend können Artikel zur Veröffentlichung freigegeben oder zur späteren Weiterbearbeitung abgespeichert werden.
+
+Die Datenbank ist passiv und bildet das ER-Diagramm ab.
+
+Zugriff auf die Datenbank findet mittels SQL-Abfragen seitens des Frontends und des Backends statt.
+
+------------------------------------------------
+Folie 3: Erläuterungen zum ER-Diagramm
+------------------------------------------------
+
+MENUBAUM kann durch zuweisung der parent_menubaum_id einen gerichteten Graphen darstellen (die Anwendung sollte dafür sorgen, dass dieser azyklisch bleibt). Der Graph kann mehrere Wurzeln haben um z.B. verschiedene Menus darzustellen (z.B. Menu an der Seite, oben, rechts)
+
+"gewicht" wird von mehrern Entities verwendet um die Sortierung zu erleichtern (Position innerhalb eines Menus)
+
+MARKUPUPDATE wird verwendet um festzuhalten welche Artikel neu versioniert und gerendert werden müssen wenn etwas in der Struktur der FU ändert. Diese Tabelle wird vom Anwendungsprogramm während des parsens gepflegt.
+
+ARTIKELVERSION enthält sowohl die Version des Textes mit markup als auch eine Version in der das markup ersetzt wurde. Dadurch kann eine konsistente Historie erhalten werden ohne die Möglichkeit eine neue Version von jeder beliebigen vergangenen Version zu erstellen zu beeinträchtigen.
+
+------------------------------------------------
+Folie 4: Zeitplan
+------------------------------------------------
+
+Kommen wir nun zum Zeitplan dieses Projektes. Der Ablauf 
+ist in die 4 Phasen:
+-Problemanalyse,
+-Entwicklung,
+-Inbetriebnahme und Test,
+-Nachbesserung und Dokumentation
+aufgeteilt. 
+
+In der Problemanalysephase entwickeln wir ein 
+detailliertes Konzept der Funktionalit‰ten des Gesamtsystems.
+In enger Zusammenarbeit mit Ihnen erstellen wir genaue
+Arbeitsablaufpl‰ne damit wir 
+Ihnen ein optimales Datenbankkonzept entwickeln kˆnnen.
+F¸r diese Phase haben wir 50 Stunden vorgesehen.
+
+Der zweite Abschnitt ist die Entwicklung. Hier wird neben 
+der eigentlichen Entwicklung der Datenbank auch ein 
+Applilkationsprototyp zur Simulation des Backends 
+entwickelt. So kann sp‰ter gew‰hrleistet werden, dass unser
+Datenbankkonzept Ihren Anforderungen und W¸nschen
+entspricht. Die Entwicklung hat ein Arbeitsvolumen von
+140 Stunden.
+
+
+In der 3. Phase "Inbetriebnahme und Test" werden wir das 
+entwickelte Datenbankkonzept auf dem ORACLE Datenbank-
+Server implementieren. Selbstverst‰ndlich werden auch 
+Demodaten zur Verf¸gung gestellt um ausf¸hrliche Tests
+mit dem Applikationsprototypen durchzuf¸hren, und die
+Funktionalit‰t unter Beweis zu stellen. Hierf¸r haben
+wir 60 Stunden veranschlagt.
+
+Die letzte Phase "Nachbesserung und Dokumentation" ist f¸r
+Nachbesserungen sowie f¸r die Entwicklung kleinerer 
+ƒnderungsw¸nsche gedacht. 
+Damit sp‰ter eine reibungslose Entwicklung eines 
+Anwendungsprogramm gew‰hrleistet ist, wird Ihnen eine
+ausf¸hrliche Dokumentation zur Verf¸gung gestellt.
+
+------------------------------------------------
+Folie 5: Softwaredesign
+------------------------------------------------
+Anwendungsprogramm als statitsches Content Management System
+Das Anwendungsprogramm ist ein statisches Content Management System
+(CMS), vorzugsweise als Webanwendung in PHP programmiert, das auf eine OracleDB
+aufsetzt. Die Seitenbestandteile (Texte, Links, Medien und Markups) werden in
+der Backend-Datenbank abgelegt. Zur Veröffentlichung einer Seite wird diese
+als statische Seite aus ihren Bestandteilen durch das Anwendungsprogramm
+gerendert und mit einer Versionsnummer versehen in der Datenbank abgelegt.
+Dieses Vorgehen garantiert zum einen eine hohe Auslieferungsgeschwindigkeit der
+vom Webserver angeforderten Seiten, weil diese bereits gerendert sind, und zum
+anderen erleichtert es die Versionierung, indem bei jeder Änderung einer Seite
+eine Versionsnummer vergeben wird. So kann jederzeit auf eine vorherige Version
+der Seiten zugegriffen werden.
+
+Einbindung dynamischer Inhalte bei der Editierung der Artikel
+Bei den Bestandteilen der Artikel, die in der Datenbank gespeichert sind,
+handelt es um einerseits um statische Elemente wie Texte und Links zu anderen
+Seiten. Und andererseits um dynamische Elemente, repräsentiert durch sogenannte
+Markups, als Platzhalter für Datenbank-Elemente, die erst beim Rendern aus der
+Datenbank abgefragt werden. Dies können Namen, Telefonnummern von Mitarbeitern
+oder Medien (Bilder, Filme) sein. 
+Damit wird Redundanz vermieden, weil Daten nur an einer Stelle zentral 
+gespeichert werden und Konsistenz gewährleistet, weil alle Artikel auf dieselbe,
+aktuelle Version eines Datums zugreifen.
+Eingebundene Datenbankobjekte bieten außerdem den Vorteil, dass dem Redakteur
+Auswahlelemente (z.B. für Namen, Raumnummern) zur Verfügung gestellt werden
+können bei der Editierung der Seite.
+
+Automatische Aktualisierung bei Datenbank-Updates
+Bei einem Update auf einen Datensatz in der Datenbank (z.B. die Änderung
+einer Telefonnummer), wird kontrolliert, ob Artikel diesen Datensatz als Markup
+einbinden und gegebenenfalls werden alle betroffenen Seiten der Webpräsenz neu
+gerendert und, versehen mit einer neuen Versionsnummer, veröffentlicht.
+
+Rechteverwaltung
+Die Anwendung verlangt beim Start eine Anmeldung (Login mit Username,
+Passwort). Die Rechteverwaltung kennt zwei Rollen (Administrator und
+Redakteur). Dem Redakteur können Bereiche der Menüstruktur zugewiesen 
+werden. In diesen Bereichen (z.B. einem Fachbereich) steht ihm dann die
+redaktionelle Funktionalität (Erstellen und Bearbeiten von Seiten) zur
+Verfügung.
+
+Workflow
+Der Publishing-Prozess ist als Workflow realisiert. Ein Artikel wird neu
+erstellt oder ein bestehender Artikel wird aus der Datenbank zur Bearbeitung
+geladen. Anschließend kann der Artikel editiert werden. Zur Begutachtung des
+Ergebnisses wird die Seite gerendert und steht dann zur Vorschau zur
+Verfügung. Anschließend kann der Artikel entweder weiter bearbeitet oder aber 
+veröffentlicht werden. Bei der Veröffentlichung wird der Artikel automatisch
+versioniert. Eine mögliche Anforderung wäre eine zwingende Beteiligung mehrerer
+Personen an der Veröffentlichung eines Artikels.
+
+Templates
+Die Anwendung stellt verschiedene Templates zur Erstellung neuer Artikel
+zur Verfügung. Damit wird einerseits für den Redakteur das Erstellen eines
+Artikels vereinfacht und andererseits wird die Einhaltung eines durchgehenden
+Designs gewährleistet.
+
+Content-Life-Cycle-Management
+Das Content-Life-Cycle-Management gewährleistet, dass Artikeln eine
+Gültigkeitsdauer zugewiesen werden kann. Inhalte, die mit zeitlicher
+Begrenzung veröffentlicht werden (z.B.Ankündigung von Terminen, Abgabe von
+Online-Dokumenten) werden nach Ablaufdatum automatisch von der Site entfernt und
+archiviert. Ebenso kann man Artikel, die ab einem bestimmten Datum
+veröffentlicht werden sollen, zur Veröffentlichung hinterlegen und diese werden
+dann automatisch zum betreffenden Zeitpunkt gerendert und veröffentlicht.
+
+Erweiterte Funktionalität
+Die Einbindung von Modulen ermöglicht erweiterte Funktionalität, z.B.
+Suchfunktionen über die Site.﻿Automatische Aktualisierung bei Änderungen der FernUni Struktur
+
+------------------------------------------------
+Folie 6:  Machbarkeitsabschaetzung
+------------------------------------------------
+Automatisches Update der Struktur der FernUni in der CMS Datenbank von externen Datenquellen (Datenbank).
+Die Informationen werden verglichen und aktualisiert, Artikel automatisch neu gerendert und versioniert wenn nötig.
+Die ist durchführbar, aber ausserhalb des momentanen Projekts.
+
+Komplexes Markup
+================
+Komplexe Markups, z.B. alle Kurse einer Fakultät die "3D" im Namen haben, sind wünschenswert.
+Diese bringen aber erhebliche Probleme für die automatische Aktualisierung mit sich und sind im aktuellen Datenbankentwurf nicht möglich.Glossar
