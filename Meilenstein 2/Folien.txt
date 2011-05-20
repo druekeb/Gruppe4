@@ -108,38 +108,43 @@ ausführliche Dokumentation zur Verfügung gestellt.
 ------------------------------------------------
 Folie 5: Softwaredesign
 ------------------------------------------------
-Anwendungsprogramm als statitsches Content Management System
-Das Anwendungsprogramm ist ein statisches Content Management System
-(CMS), vorzugsweise als Webanwendung in PHP programmiert, das auf eine OracleDB
-aufsetzt. Die Seitenbestandteile (Texte, Links, Medien und Markups) werden in
-der Backend-Datenbank abgelegt. Zur Veröffentlichung einer Seite wird diese
-als statische Seite aus ihren Bestandteilen durch das Anwendungsprogramm
-gerendert und mit einer Versionsnummer versehen in der Datenbank abgelegt.
-Dieses Vorgehen garantiert zum einen eine hohe Auslieferungsgeschwindigkeit der
-vom Webserver angeforderten Seiten, weil diese bereits gerendert sind, und zum
-anderen erleichtert es die Versionierung, indem bei jeder Änderung einer Seite
-eine Versionsnummer vergeben wird. So kann jederzeit auf eine vorherige Version
-der Seiten zugegriffen werden.
+Content Management System
+Das Anwendungsprogramm ist ein statisches Web-Content-Management-System
+(CMS) zur Verwaltung der Website der Fernuni Hagen.
+Es könnte als Webanwendung z.B. in PHP programmiert werden.
+Die Seiteninhalte (Texte, Links, Medien und Markups) werden als Artikel in der
+Backend-Datenbank (Orcale DB der Fernuni Hagen) abgelegt. Bei der
+Veröffentlichung eines Artikels wird dieser aus seinen Bestandteilen durch das
+Anwendungsprogramm gerendert und, mit einer Versionsnummer versehen, in der
+Datenbank abgelegt.
+Bei Aufruf der Seite über den Webserver, wird der Artikel dann als statische
+Seite ausgeliefert. Dieses Vorgehen garantiert zum einen eine hohe
+Auslieferungsgeschwindigkeit der vom Webserver angeforderten Seiten, weil diese
+bereits gerendert sind, und zum anderen erleichtert es die Versionierung, indem
+bei jeder neuen Veröffentlichung eines Artikels, eine Versionsnummer neu
+vergeben wird. So kann auch jederzeit auf eine vorherige Version der Seite
+zugegriffen werden.
 
-Einbindung dynamischer Inhalte bei der Editierung der Artikel
+Einbindung dynamischer Inhalte
 Bei den Bestandteilen der Artikel, die in der Datenbank gespeichert sind,
 handelt es um einerseits um statische Elemente wie Texte und Links zu anderen
 Seiten. Und andererseits um dynamische Elemente, repräsentiert durch sogenannte
 Markups, als Platzhalter für Datenbank-Elemente, die erst beim Rendern aus der
 Datenbank abgefragt werden. Dies können Namen, Telefonnummern von Mitarbeitern
 oder Medien (Bilder, Filme) sein. 
-Damit wird Redundanz vermieden, weil Daten nur an einer Stelle zentral 
-gespeichert werden und Konsistenz gewährleistet, weil alle Artikel auf dieselbe,
-aktuelle Version eines Datums zugreifen.
+Damit wird einerseits Redundanz vermieden, weil Daten nur an einer Stelle
+zentral gespeichert werden und andererseits Konsistenz gewährleistet, weil alle
+Artikel auf dieselbe, aktuelle Version eines Datums zugreifen.
 Eingebundene Datenbankobjekte bieten außerdem den Vorteil, dass dem Redakteur
-Auswahlelemente (z.B. für Namen, Raumnummern) zur Verfügung gestellt werden
+Auswahlelemente (z.B. für Namen oder Raumnummern) zur Verfügung gestellt werden
 können bei der Editierung der Seite.
 
 Automatische Aktualisierung bei Datenbank-Updates
 Bei einem Update auf einen Datensatz in der Datenbank (z.B. die Änderung
-einer Telefonnummer), wird kontrolliert, ob Artikel diesen Datensatz als Markup
-einbinden und gegebenenfalls werden alle betroffenen Seiten der Webpräsenz neu
-gerendert und, versehen mit einer neuen Versionsnummer, veröffentlicht.
+einer Telefonnummer), wird durch den Markup-Update-Prozess kontrolliert, ob
+Artikel diesen Datensatz als Markup einbinden und gegebenenfalls werden alle
+betroffenen Seiten der Webpräsenz neu gerendert und, versehen mit einer neuen
+Versionsnummer, veröffentlicht.
 
 Rechteverwaltung
 Die Anwendung verlangt beim Start eine Anmeldung (Login mit Username,
@@ -150,33 +155,37 @@ redaktionelle Funktionalität (Erstellen und Bearbeiten von Seiten) zur
 Verfügung.
 
 Workflow
-Der Publishing-Prozess ist als Workflow realisiert. Ein Artikel wird neu
-erstellt oder ein bestehender Artikel wird aus der Datenbank zur Bearbeitung
-geladen. Anschließend kann der Artikel editiert werden. Zur Begutachtung des
-Ergebnisses wird die Seite gerendert und steht dann zur Vorschau zur
-Verfügung. Anschließend kann der Artikel entweder weiter bearbeitet oder aber 
-veröffentlicht werden. Bei der Veröffentlichung wird der Artikel automatisch
-versioniert. Eine mögliche Anforderung wäre eine zwingende Beteiligung mehrerer
-Personen an der Veröffentlichung eines Artikels.
+Der Publishing-Prozess ist als Workflow realisiert:
 
-Templates
-Die Anwendung stellt verschiedene Templates zur Erstellung neuer Artikel
-zur Verfügung. Damit wird einerseits für den Redakteur das Erstellen eines
-Artikels vereinfacht und andererseits wird die Einhaltung eines durchgehenden
-Designs gewährleistet.
+1. Ein Artikel wird neu erstellt oder ein bestehender Artikel wird aus der
+   Datenbank zur Bearbeitung geladen. 
+2. Anschließend kann der Artikel editiert werden. 
+3. Zur Begutachtung des Ergebnisses wird die Seite gerendert und steht dann
+   für die Vorschau zur Verfügung. Anschließend kann der Artikel entweder weiter
+   bearbeitet (zurück zu 2.) oder aber 
+4. veröffentlicht werden. 
+5. Bei der Veröffentlichung wird der Artikel automatisch versioniert. 
+
+Eine möglicherweise wünschenswerte Funktionalität wäre eine zwingende
+Beteiligung mehrerer Personen an der Veröffentlichung eines Artikels.
+
+Seitenvorlagen
+Der Aufbau der Seiten (Header, Footer, Navigation, Menüs) und das Design
+(Schriften, Farben, Logos) wird in Seitenvorlagen gespeichert. Die Anwendung
+stellt verschiedene Seitenvorlagen bei der Erstellung neuer Artikel zur
+Verfügung. Das vereinfacht dem Redakteur das Erstellen eines Artikels
+und gewährleistet ein durchgehendes Erscheinungsbild des Webauftritts.
 
 Content-Life-Cycle-Management
-Das Content-Life-Cycle-Management gewährleistet, dass Artikeln eine
-Gültigkeitsdauer zugewiesen werden kann. Inhalte, die mit zeitlicher
-Begrenzung veröffentlicht werden (z.B.Ankündigung von Terminen, Abgabe von
-Online-Dokumenten) werden nach Ablaufdatum automatisch von der Site entfernt und
-archiviert. Ebenso kann man Artikel, die ab einem bestimmten Datum
-veröffentlicht werden sollen, zur Veröffentlichung hinterlegen und diese werden
-dann automatisch zum betreffenden Zeitpunkt gerendert und veröffentlicht.
-
-Erweiterte Funktionalität
-Die Einbindung von Modulen ermöglicht erweiterte Funktionalität, z.B.
-Suchfunktionen über die Site.﻿Automatische Aktualisierung bei Änderungen der FernUni Struktur
+Das Content-Life-Cycle-Management sorgt dafür, dass Artikeln, denen eine
+Gültigkeitsdauer mit Erscheinungsdatum und Ablaufdatum zugewiesen wurde, mit
+ebendieser zeitlichen Beschränkung veröffentlicht werden. Dabei kann es sich um 
+aktuelle News, die Ankündigung von Terminen, Abgabe von Online-Dokumenten, etc.
+handeln. Betreffende Artikel werden nach Ablaufdatum automatisch von der
+Website entfernt und archiviert. Und ebenso können Artikel, die ab einem
+bestimmten Datum veröffentlicht werden sollen, zur Veröffentlichung hinterlegen
+werden. Das Content-Life-Cycle-Management rendert und veröffentlicht die
+Artikel dann zum betreffenden Zeitpunkt.
 
 ------------------------------------------------
 Folie 6:  Machbarkeitsabschaetzung
