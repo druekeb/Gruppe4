@@ -4,9 +4,13 @@ Folie 1: Szenarien
 
 Sehr geehrte Damen und Herren, wir möchten Ihnen heute in einem Grobkonzept unsere Vorstellungen zur Entwicklung des Content-Management-Systems für den Webauftritt der Fernuni Hagen präsentieren.
 Zunächst betrachten wir einige Szenarien zur späteren Nutzung des Systems.
-Ein mögliches Szenario ist das verfassen eines neuen Artikels: Dabei wird eine Kategorie, in der der neue Artikel erscheinen soll, vom Redakteur gewählt. Er bestimmt ein Template, dass das spätere Aussehen des Artikels festlegt. Der Redakteur gibt Titel und Inhalt sowie ein Zeitfenster ein, in dem der Artikel auf der Webseite angezeigt werden soll und speichert seine Eingaben. Er gibt den Artikel zur Veröffentlichung frei.
-Ein weiteres Szenario ist das Bearbeiten eines bestehenden Artikels: Der Redakteur wählt einen Artikel zur Bearbeitung. Er nimmt Änderungen am Inhalt vor, speichert diese und gibt die Änderungen zur Veröffentlichung frei. Eine neue Version des Artikels wird erzeugt.
-Als letztes Szenario sehen wir uns das Registrieren eines neuen Redakteurs an: Der Administrator legt ein neues Benutzerkonto für einen Redakteur an. Er vergibt Rechte, die z. B. festlegen, zur Bearbeitung von Artikeln welcher Kategorien der Menustruktur der neue Redakteur autorisiert ist. Der Redakteur loggt sich am System ein, indem er sich mit Benutzername und Passwort authentifiziert.
+
+Ein mögliches Szenario ist das verfassen eines neuen Artikels: Dabei wird eine Kategorie, in der der neue Artikel erscheinen soll, vom Redakteur gewählt. Er bestimmt ein Template, dass das spätere Aussehen des Artikels festlegt. Der Redakteur gibt Titel und Inhalt sowie ein Zeitfenster ein, in dem der Artikel auf der Webseite angezeigt werden soll und speichert seine Eingaben. Er gibt den Artikel dann zur Veröffentlichung frei.
+
+Ein weiteres Szenario ist das Bearbeiten eines bestehenden Artikels: Der Redakteur wählt einen Artikel zur Bearbeitung. Er nimmt Änderungen am Inhalt vor, speichert diese und gibt die Änderungen zur Veröffentlichung frei. Eine neue Version des Artikels wird automatisch erzeugt.
+
+Als letztes Szenario sehen wir uns das Registrieren eines neuen Redakteurs an: Der Administrator legt ein neues Benutzerkonto für einen Redakteur an. Er vergibt Rechte, z. B. kann er festlegen in  welchen Kategorien der Menustruktur der neue Redakteur zur Bearbeitung von Artikeln autorisiert ist. Der Redakteur loggt sich dann am System ein, indem er sich mit Benutzernamen und Passwort authentifiziert.
+
 Auf den Markup-Update-Prozess kommen wir im weiteren Verlauf der Präsentation noch zu sprechen.
 
 (Bild: Anwendungsfalldiagramm von Carsten)
@@ -19,13 +23,13 @@ Folie 2: Funktionalitäten
 
 Das Frontend  soll die Menüstruktur abbilden sowie ein Durchblättern und Suchen der Artikel ermöglichen.
  
-Die Suchfunktionen sollte eine einfache sowie eine erweiterte Suche erlauben, bei der alle Beiträge nach textlicher Übereinstimmung des Suchbegriffes durchsucht werden. 
+Die Suchfunktion sollte eine einfache sowie eine erweiterte Suche erlauben, bei der alle Beiträge nach textlichen Übereinstimmung des Suchbegriffes durchsucht werden. 
 
 Die Ausgabe der Suche erfolgt durch auflisten von bis zu 10 Treffern mit der Möglichkeit weitere Treffer anzusehen. 
 
 Treffer werden durch die Artikelüberschrift, Datum, Autor und gegebenfalls Kategorie sowie den erste drei Zeilen des Inhaltes angezeigt.
 
-Die erweiterete Suche solle eine Einschränkung der einfachen Suche nach Unterpunkten wie Autor, Datum, Schlagwörter, usw. ermöglichen.
+Die erweiterete Suche sollte eine Einschränkung der einfachen Suche nach Unterpunkten wie Autor, Datum, Schlagwörter, usw. ermöglichen.
 
 Das Backend stellt dem eingeloggtem Redakteur ein erweitertes Frontend zur Verfügung welches Änderungen an den vorhandenen Artikeln ermöglicht. Dabei werden zusätzliche Operationen wie
 	- das Editieren des Artikel 
@@ -33,7 +37,7 @@ Das Backend stellt dem eingeloggtem Redakteur ein erweitertes Frontend zur Verf�
 	- Archivieren des Artikels
 	- sowie Löschen eines Artikels
 unterhalb jeden Artikels angezeigt.
-Ferner wird gibt es die Option einen "neuen Artikel zu erstellen".
+Ferner gibt es die Option einen "neuen Artikel zu erstellen".
 
 Das Editieren eines Artikels erlaubt es dem Redakteur die Attribute des Artikels wie z.B. Erscheinungs- und Ablaufsdatum, Schlagwörter und Kategorie zu definieren und seinen Inhalt zu bestimmen.
 Durch im Artikeltext eingefügte Platzhalter kann auf interne oder externe Medien, sowie durch Markups auf Daten der Struktur der Fernuni (Lehrgebiete, Mitarbeiter, Telefonnummern, usw.) verwiesen werden.
@@ -53,7 +57,8 @@ Kommen wir jetzt zu einigen Details des Datenbankmodells wie wir und es momentan
 
 Folie 3b:
 (Flashanimation fokus_menu)
-Die Tabelle MENUBAUM kann durch Zuweisung der parent_menubaum_id einen gerichteten Graphen darstellen. Dieser Graph kann mehrere Wurzeln haben um z.B. verschiedene Menus darzustellen (Menu an der Seite, oben, rechts etc.). Die Anwendung sollte dafür sorgen, das der Graph azyklisch bleibt.
+Die Tabelle MENUBAUM kann durch Zuweisung der parent_menubaum_id einen gerichteten Graphen darstellen. Dieser Graph kann mehrere Wurzeln haben um  verschiedene Menus darzustellen z.B. das Menu an der Seite oder oben.
+Die Anwendung sollte dafür sorgen, das der Graph azyklisch bleibt.
 Einzelne Artikel können über die Tabelle MENUARTIKEL an beliebiger Stelle im Menubaum verlinkt werden. Dabei kann die Reihenfolge in der die Artikel augezählt werden über die Eigenschaft "gewicht" geändert werden.
 
 Folie 3c:
@@ -110,11 +115,11 @@ Folie 5: Softwaredesign
 ------------------------------------------------
 Content Management System
 Das Anwendungsprogramm ist ein statisches Web-Content-Management-System
-(CMS) zur Verwaltung der Website der Fernuni Hagen.
+(CMS) zur Verwaltung der Webseite der Fernuni Hagen.
 Es könnte als Webanwendung z.B. in PHP programmiert werden.
 Die Seiteninhalte (Texte, Links, Medien und Markups) werden als Artikel in der
-Backend-Datenbank (Orcale DB der Fernuni Hagen) abgelegt. Bei der
-Veröffentlichung eines Artikels wird dieser aus seinen Bestandteilen durch das
+Backend-Datenbank (in diesem Fall der Oracle Datenbank der Fernuni Hagen) abgelegt.
+Bei der Veröffentlichung eines Artikels wird dieser aus seinen Bestandteilen durch das
 Anwendungsprogramm gerendert und, mit einer Versionsnummer versehen, in der
 Datenbank abgelegt.
 Bei Aufruf der Seite über den Webserver, wird der Artikel dann als statische
@@ -136,11 +141,11 @@ Damit wird einerseits Redundanz vermieden, weil Daten nur an einer Stelle
 zentral gespeichert werden und andererseits Konsistenz gewährleistet, weil alle
 Artikel auf dieselbe, aktuelle Version eines Datums zugreifen.
 Eingebundene Datenbankobjekte bieten außerdem den Vorteil, dass dem Redakteur
-Auswahlelemente (z.B. für Namen oder Raumnummern) zur Verfügung gestellt werden
-können bei der Editierung der Seite.
+Auswahlelemente (z.B. für Namen oder Raumnummern) bei der Editierung der Seite zur Verfügung gestellt werden
+können.
 
 Automatische Aktualisierung bei Datenbank-Updates
-Bei einem Update auf einen Datensatz in der Datenbank (z.B. die Änderung
+Bei einem Update einens Datensatzes in der Datenbank (z.B. die Änderung
 einer Telefonnummer), wird durch den Markup-Update-Prozess kontrolliert, ob
 Artikel diesen Datensatz als Markup einbinden und gegebenenfalls werden alle
 betroffenen Seiten der Webpräsenz neu gerendert und, versehen mit einer neuen
@@ -182,8 +187,8 @@ Gültigkeitsdauer mit Erscheinungsdatum und Ablaufdatum zugewiesen wurde, mit
 ebendieser zeitlichen Beschränkung veröffentlicht werden. Dabei kann es sich um 
 aktuelle News, die Ankündigung von Terminen, Abgabe von Online-Dokumenten, etc.
 handeln. Betreffende Artikel werden nach Ablaufdatum automatisch von der
-Website entfernt und archiviert. Und ebenso können Artikel, die ab einem
-bestimmten Datum veröffentlicht werden sollen, zur Veröffentlichung hinterlegen
+Website entfernt und archiviert. Ebenso können Artikel, die ab einem
+bestimmten Datum veröffentlicht werden sollen, zur Veröffentlichung hinterlegt
 werden. Das Content-Life-Cycle-Management rendert und veröffentlicht die
 Artikel dann zum betreffenden Zeitpunkt.
 
@@ -202,6 +207,6 @@ Eine Abschätzung des Arbeitsuafwandes ist ohne Informationen über die externen
 
 Komplexes Markup erschwert die Aktualisierung bei geänderten Strukturdaten. Für sehr flexibles Markup muss u.U. auf ein System zurückgegriffen werden bei dem alle Artikel neu gerendert werden und mit der aktuellen Version verglichen werden um Änderungen festzustellen. Das neu-rendern aller statt nur der betroffenen Artikel bedeutet einen weitaus höheren Rechenaufwand.
 
-Soweit unser Grobkonzpt. Das Team von Group 4 Management Solutuions bedankt sich für Ihre Aufmerksamkeit und hofft, dass
+Soweit unser Grobkonzept. Das Team von Group 4 Data Management Solutions bedankt sich für Ihre Aufmerksamkeit und hofft, dass
 das Konzept Ihren Vorstellungen entspricht. Für weitere Fragen stehen wir Ihnen gerne am nächsten Besprechungstermin zur 
 Verfügung.

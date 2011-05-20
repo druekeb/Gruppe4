@@ -1,0 +1,1 @@
+for %%i in (*.wav) do ffmpeg -i %%i -ar 22050 -ac 1 -ab 64k %%~ni.mp3
