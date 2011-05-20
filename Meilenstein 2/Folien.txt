@@ -54,11 +54,11 @@ Kommen wir jetzt zu einigen Details des Datenbankmodells wie wir und es momentan
 Folie 3b:
 (Flashanimation fokus_menu)
 Die Tabelle MENUBAUM kann durch Zuweisung der parent_menubaum_id einen gerichteten Graphen darstellen. Dieser Graph kann mehrere Wurzeln haben um z.B. verschiedene Menus darzustellen (Menu an der Seite, oben, rechts etc.). Die Anwendung sollte dafür sorgen, das der Graph azyklisch bleibt.
-Einzelne Artikel über die Tabelle MENUARTIKEL an beliebiger Stelle im Menubaum verlinkt werden. Dabei kann die Reihenfolge in der die Artikel augezählt werden über die Eigenschaft "gewicht" geändert werden.
+Einzelne Artikel können über die Tabelle MENUARTIKEL an beliebiger Stelle im Menubaum verlinkt werden. Dabei kann die Reihenfolge in der die Artikel augezählt werden über die Eigenschaft "gewicht" geändert werden.
 
 Folie 3c:
 (Flashanimation fokus_artikel)
-Zu jedem angelegten Artikel werden alle vorhergehenden Versionen gespeichert, durch benutzung der artikel_id bei Verlinkungen kann immer die aktuellste Version abgerufen werden. Ist ein Artikel bereits abgelaufen oder noch vor dem Erscheinungsdatum, kann die Anwendung einen entsprechenden Hinweis anzeigen. Um zu gewährleisten, das ältere Versionen, die eventuell Markup enthalten, einfach bearbeitet werden können und trotzdem ein Zugriff auf den Artikel so wie er veröffentlicht wurde möglich ist, wird sowohl der Artikel mit Markup also auch der gerenderte Artikel gespeichert.
+Zu jedem angelegten Artikel werden alle vorhergehenden Versionen gespeichert, durch Benutzung der artikel_id bei Verlinkungen kann immer die aktuellste Version abgerufen werden. Ist ein Artikel bereits abgelaufen oder noch vor dem Erscheinungsdatum, kann die Anwendung einen entsprechenden Hinweis anzeigen. Um zu gewährleisten, das ältere Versionen, die eventuell Markup enthalten, einfach bearbeitet werden können und trotzdem ein Zugriff auf den Artikel so wie er veröffentlicht wurde möglich ist, wird sowohl der Artikel mit Markup also auch der gerenderte Artikel gespeichert.
 
 Folie 3d:
 (Flashanimation fokus_fstruktur)
