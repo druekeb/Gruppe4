@@ -201,3 +201,7 @@ Für das automatische Update müssen dazu entsprechende Importfilter erstellt we
 Eine Abschätzung des Arbeitsuafwandes ist ohne Informationen über die externen Datenquellen nicht möglich.
 
 Komplexes Markup erschwert die Aktualisierung bei geänderten Strukturdaten. Für sehr flexibles Markup muss u.U. auf ein System zurückgegriffen werden bei dem alle Artikel neu gerendert werden und mit der aktuellen Version verglichen werden um Änderungen festzustellen. Das neu-rendern aller statt nur der betroffenen Artikel bedeutet einen weitaus höheren Rechenaufwand.
+
+Soweit unser Grobkonzpt. Das Team von Group 4 Management Solutuions bedankt sich für Ihre Aufmerksamkeit und hofft, dass
+das Konzept Ihren Vorstellungen entspricht. Für weitere Fragen stehen wir Ihnen gerne am nächsten Besprechungstermin zur 
+Verfügung.
