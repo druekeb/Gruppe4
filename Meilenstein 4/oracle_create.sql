@@ -128,6 +128,25 @@ CREATE TABLE  "SPERRE"
 	  REFERENCES  "BENUTZER" ("BENUTZER_ID") ON DELETE CASCADE ENABLE
    )
 /
+create table Table_Columns
+as select Table_Name, Column_name, Data_type
+from user_tab_columns
+/
+alter table table_columns add
+constraint Table_columns_pk primary key (table_name, column_name)
+/
+create table Markups (
+MARKUP_ID Number not null ,
+ARTIKEL_ID Number not null ,
+TABLE_NAME varchar(32) not null,
+COLUMN_NAME varchar(32) not null,
+ CONSTRAINT MARKUPS_PK PRIMARY KEY (MARKUP_ID) ,
+ CONSTRAINT ARTIKEL_ID_FK FOREIGN KEY (ARTIKEL_ID)
+references ARTIKEL(ARTIKEL_ID),
+CONSTRAINT TABLE_NAME_FK FOREIGN KEY(TABLE_NAME, COLUMN_NAME) 
+references TABLE_COLUMNS (TABLE_NAME, COLUMN_NAME)
+)
+/
 
  CREATE SEQUENCE   "ARTIKELVERSION_SEQ"  MINVALUE 1 MAXVALUE 999999999999999999999999999 INCREMENT BY 1 START WITH 1 CACHE 20 NOORDER  NOCYCLE
 /
