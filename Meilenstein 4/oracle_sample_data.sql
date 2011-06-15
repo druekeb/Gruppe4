@@ -13,3 +13,4 @@ INSERT INTO MENUBAUM (titel,gewicht,parent_menubaum_id) VALUES
 ('1.2.2',1,4);
 INSERT INTO MENUBAUM (titel,gewicht,parent_menubaum_id) VALUES ('1.3',1,1);
 INSERT INTO MENUBAUM (titel,gewicht,parent_menubaum_id) VALUES ('2.1',1,2);
+
