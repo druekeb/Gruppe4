@@ -59,6 +59,7 @@ Folie 3a-3h: ER-Diagramm
 Folie 3a
 (Bild: ER-Diagramm.png)
 Kommen wir nun zu einigen Details des Datenbankmodells der von uns entwickelten Datenbanklösung.
+Die im ER-Diagramm dargestellten n:m-Beziehungen werden in der Datenbank jeweils durch eine eigene Tabelle realisiert.
 
 Folie 3b:
 (Flashanimation mbaum)
