@@ -1,0 +1,62 @@
+1) Alle Artikelversionen abrufen
+
+SELECT
+	a.artikel_id,
+	v.artikelversion_id,
+	a.titel,
+	b.anzeigename,
+	TO_CHAR(v.aenderungsdatum,'DD.MM.YYYY HH24:MI') as aenderungsdatum,
+	v.status
+FROM
+	ARTIKEL a
+	JOIN ARTIKELVERSION v ON a.artikel_id = v.artikel_id
+	JOIN BENUTZER b ON v.benutzer_id = b.benutzer_id
+ORDER BY
+	a.artikel_id,
+	v.artikelversion_id
+
+
+2) Alle Artikel die unter einem Menupunkt [MENUID] auftauchen sollen abrufen
+
+SELECT
+	a.artikel_id,
+        a.titel,
+	a.typ,
+	b.anzeigename,
+	b.benutzer_id,
+	TO_CHAR(v.erstellungsdatum, 'dd.mm.yyyy HH24:MI'),
+	TO_CHAR(v.aenderungsdatum, 'dd.mm.yyyy HH24:MI'),
+	TO_CHAR(v.erscheinungsdatum, 'dd.mm.yyyy HH24:MI'),
+	TO_CHAR(v.ablaufdatum, 'dd.mm.yyyy HH24:MI'),
+	TO_CHAR(v.markuptext),
+	TO_CHAR(v.anzeigetext),
+	v.status
+FROM
+	ARTIKELVERSION v
+	JOIN MENUARTIKEL m ON v.artikel_id = m.artikel_id
+	JOIN ARTIKEL a ON v.artikel_id = a.artikel_id
+	JOIN BENUTZER b ON v.benutzer_id = b.benutzer_id
+WHERE
+	m.menubaum_id = [MENUID] AND
+	v.status = 'Veroeffentlicht' AND
+	(v.ablaufdatum IS NULL OR v.ablaufdatum >= CURRENT_TIMESTAMP) AND
+	(v.erscheinungsdatum IS NULL OR v.erscheinungsdatum <= CURRENT_TIMESTAMP)
+ORDER BY v.aenderungsdatum DESC
+
+3) Schlagwörter mit Häufigkeit (z.B. für eine Tag-Cloud)
+
+SELECT
+	COUNT (s.schlagwort) as anzahl,
+	s.schlagwort
+FROM
+	SCHLAGWORT_ARTIKELVERSION sa
+	JOIN ARTIKELVERSION v ON v.artikelversion_id = sa.artikelversion_id
+	JOIN SCHLAGWORT s ON s.schlagwort_id = sa.schlagwort_id
+WHERE
+	v.status = 'Veroeffentlicht' AND
+	(v.ablaufdatum IS NULL OR v.ablaufdatum >= CURRENT_TIMESTAMP) AND
+	(v.erscheinungsdatum IS NULL OR v.erscheinungsdatum <= CURRENT_TIMESTAMP)
+GROUP BY
+	s.schlagwort
+ORDER BY
+	COUNT (s.schlagwort)
