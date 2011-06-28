@@ -1,0 +1,115 @@
+﻿------------------------------------------------
+Folie 1: Funktionalitäten
+------------------------------------------------
+
+(Bild: Funktionalitaeten_Arbeitsteilung.png)
+
+Sehr geehrte Damen und Herren, heute möchten wir Ihnen die Ergebnisse unserer Entwicklung des Content-Management-Systems für den Webauftritt der Fernuni Hagen präsentieren.
+Zunächst wollen wir auf die Funktionalitäten des Gesamtsystems eingehen.
+
+Das Frontend soll die Menüstruktur abbilden sowie ein Durchblättern und Suchen der Artikel ermöglichen. 
+Die Suchfunktion sollte eine einfache sowie eine erweiterte Suche erlauben, bei der alle Beiträge nach textlichen Übereinstimmung des Suchbegriffes durchsucht werden. 
+Die Ausgabe der Suche erfolgt durch Auflisten von bis zu 10 Treffern mit der Möglichkeit weitere Treffer anzusehen. 
+Treffer werden durch die Artikelüberschrift, Datum, Autor und gegebenfalls Kategorie sowie den erste drei Zeilen des Inhaltes angezeigt.
+Die erweiterete Suche sollte eine Einschränkung der einfachen Suche nach Unterpunkten wie Autor, Datum, Schlagwörter, usw. ermöglichen.
+
+Das Backend stellt dem eingeloggtem Redakteur ein erweitertes Frontend zur Verfügung welches Änderungen an den vorhandenen Artikeln ermöglicht. Dabei werden zusätzliche Operationen wie
+	- das Editieren des Artikel 
+	- Zugriff auf ältere Versionen des Artikels
+	- Archivieren des Artikels
+	- sowie Löschen eines Artikels
+unterhalb jeden Artikels angezeigt.
+Ferner gibt es die Option einen "neuen Artikel zu erstellen".
+Das Editieren eines Artikels erlaubt es dem Redakteur die Attribute des Artikels wie z.B. Erscheinungs- und Ablaufsdatum, Schlagwörter und Kategorie zu definieren und seinen Inhalt zu bestimmen.
+Durch im Artikeltext eingefügte Platzhalter kann auf interne oder externe Medien, sowie durch Markups auf Daten der Struktur der Fernuni (Lehrgebiete, Mitarbeiter, Telefonnummern, usw.) verwiesen werden.
+Abschliessend können Artikel zur Veröffentlichung freigegeben oder zur späteren Weiterbearbeitung abgespeichert werden.
+Zur Gewährleistung eines durchgehenden Erscheinungsbildes des Webauftritts werden dem Redakteur Seitenvorlagen bereitgestellt. Sie legen Aufbau und Aussehen der Artikel fest und erleichtern das Erstellen von speziellen Artikeln wie z. B. Klausurankündigungen.
+
+Die Datenbank ist passiv und bildet das ER-Diagramm ab.
+Zugriff auf die Datenbank findet mittels SQL-Abfragen seitens des Frontends und des Backends statt.
+
+
+
+------------------------------------------------
+Folie 2: Grenzen des Systems
+------------------------------------------------
+
+(Bild: Einschraenkungen_Grenzen.png )
+
+Über den momentan geplanten Funktionsumfang hinaus sind auch noch weitere Funktionen denkbar.
+Dazu zählen z.B. ein automatisches Update der Struktur der FernUni in der CMS Datenbank von einer externen Datenquelle wie etwa einer schon vorhandenen Datenbank.
+Auch komplexes Markup um z.B. alle Kurse einer Fakultät die "3D" im Namen haben aufzulisten und entsprechende Artikel zu verlinken ist denkbar.
+Weiterhin wäre eine zwingende Beteiligung mehrerer Personen an der Veröffentlichung eines Artikels möglich.
+
+Diese Funktionen sind momentan nicht Teil des Entwurfs und würden den Umfang des Projekts erheblich steigern.
+
+Für das automatische Update müssen dazu entsprechende Importfilter erstellt werden die die externen Daten in die CMS interne Struktur importieren. Gleichzeitig müssen Artikel die auf diese Daten zugreifen neu gerendert und versioniert werden.
+Eine Abschätzung des Arbeitsaufwandes ist ohne Informationen über die externen Datenquellen nicht möglich.
+
+Komplexes Markup erschwert die Aktualisierung bei geänderten Strukturdaten. Für sehr flexibles Markup muss u.U. auf ein System zurückgegriffen werden bei dem alle Artikel neu gerendert werden und mit der aktuellen Version verglichen werden um Änderungen festzustellen. Das neu-rendern aller statt nur der betroffenen Artikel bedeutet einen weitaus höheren Rechenaufwand.
+
+Die Beteiligung mehrerer Personen an der Veröffentlichung eines Artikels würde die Modellierung eines komplexen Workflows nötig machen, um zu verhindern, dass ein Artikel veröffentlicht wird, bevor er von einer anderen Person begutachtet wurde. Es ist auch fraglich, ob ein solch komplexer Workflow in einer nichtkommerziellen Einrichtung wie der FernUniversität überhaupt benötigt wird.
+
+
+
+------------------------------------------------
+Folie 3a-3h: ER-Diagramm
+------------------------------------------------
+
+Folie 3a
+(Bild: ER-Diagramm.png)
+Kommen wir nun zu einigen Details des Datenbankmodells der von uns entwickelten Datenbanklösung.
+
+Folie 3b:
+(Flashanimation mbaum)
+Die Tabelle MENUBAUM kann durch Zuweisung der parent_menubaum_id einen gerichteten Graphen darstellen. Dieser Graph kann mehrere Wurzeln haben um  verschiedene Menus darzustellen z.B. das Menu an der Seite oder oben.
+Die Anwendung sollte dafür sorgen, das der Graph azyklisch bleibt.
+Einzelne Artikel können über die Tabelle MENUARTIKEL an beliebiger Stelle im Menubaum verlinkt werden. Dabei kann die Reihenfolge in der die Artikel augezählt werden über die Eigenschaft "gewicht" geändert werden.
+
+Folie 3c:
+(Flashanimation artikel)
+Zu jedem angelegten Artikel werden alle vorhergehenden Versionen gespeichert, durch Benutzung der artikel_id bei Verlinkungen kann immer die aktuellste Version abgerufen werden. Ist ein Artikel bereits abgelaufen oder noch vor dem Erscheinungsdatum, kann die Anwendung einen entsprechenden Hinweis anzeigen. Um zu gewährleisten, das ältere Versionen, die eventuell Markup enthalten, einfach bearbeitet werden können und trotzdem ein Zugriff auf den Artikel so wie er veröffentlicht wurde möglich ist, wird sowohl der Artikel mit Markup also auch der gerenderte Artikel gespeichert.
+
+Folie 3d:
+(Flashanimation medien)
+In Artikel können externe Medien wie z. B. Bilder oder Filme eingebunden werden. Dazu wird der Pfad zur entprechenden Datei in der Datenbank hinterlegt und mit dem jeweiligen Artikel verknüpft. 
+Des Weiteren können Schlagwörter zu Artikeln gepeichert werden, die das leichtere Finden von Artikeln zu einem bestimmten Thema ermöglichen.
+
+Folie 3e:
+(Flashanimation markup)
+Bei einem Update eines Datensatzes in der Datenbank (z. B. der Änderung einer Telefonnummer) müssen diese Änderungen auch in Artikeln sichtbar werden, die den entprechenen Datensatz einbinden. Dazu werden zu jedem Artikel die Markups, die auf entsprechende Elemente in der Fernuni-Struktur verweisen, in der Datenbank gespeichert. Die Verbindung mit den Strukturdaten wird dabei mithilfe von Subtypen der Entität Markup (z. B. Lehrgebiete-Markup) realisiert. Dazu wird in der entprechenden Markup-Tabelle gespeichert, welches Attribut der betreffenden Fernuni-Entität referenziert wird.
+
+Folie 3f:
+(Flashanimation benutzer)
+Die Rechteverwaltung kennt zwei Rollen (Administrator und
+Redakteur). Dem Redakteur können Bereiche der Menüstruktur zugewiesen 
+werden. In diesen Bereichen (z.B. einem Fachbereich) steht ihm dann die
+redaktionelle Funktionalität (Erstellen und Bearbeiten von Seiten) zur
+Verfügung.
+
+Folie 3g:
+(Flashanimation sperre)
+Um zu verhindern, dass mehrere Redakteure gleichzeitig den selben Artikel bearbeiten, wird dieser für andere Benutzer gesperrt, solange ein Redakteur an ihm arbeitet. Damit ein Artikel nicht von einem Redakteur versehentlich gesperrt bleibt, weil dieser besipielsweise vergisst, das Bearbeitungsfenster zu schließen, wird die Sperre nach einer gewissen Zeit wieder aufgehoben.
+
+Folie 3h:
+(Bild: ER_Fernunistruktur.png)
+Ein weiterer Teilbereich der Datenbank bildet die Struktur der FernUni nach, dadurch können Daten wie z.B. Telefonnummern zentral gepflegt werden und müssen nicht manuell in einzelnen Artikeln geändert werden. Die Anwendung merkt sich dazu in der Tabelle MARKUPUPDATE welche Daten in einem Artikel verwendet werden um diese automatisch zu aktualisieren und neu zu versionieren.
+
+
+------------------------------------------------
+Folie 4a, 4b...: SQL-Skripte
+------------------------------------------------
+
+(2-3 kurze SQL-Skripte jeweils auf einer Folie + kurze Erläuterung was das Skript macht)
+
+
+
+------------------------------------------------
+Folie 5: Anwendungsprogramm
+------------------------------------------------
+
+(Bild: Screenshot_Anwendungsprogramm.png, Link zur Webseite)
+
+(Bedienungsanleitung in Präsentation oder im Anwendungsprogramm integriert?)
+
+
