@@ -59,7 +59,7 @@ Folie 3a-3h: ER-Diagramm
 Folie 3a
 (Bild: ER-Diagramm.png)
 Kommen wir nun zu einigen Details des Datenbankmodells der von uns entwickelten Datenbanklösung.
-Die im ER-Diagramm dargestellten n:m-Beziehungen werden in der Datenbank jeweils durch eine eigene Tabelle realisiert.
+Die im ER-Diagramm dargestellten n:m-Beziehungen werden in der Datenbank jeweils durch eine eigene Tabelle (Beziehungsrelation) realisiert.
 
 Folie 3b:
 (Flashanimation mbaum)
@@ -78,7 +78,8 @@ Des Weiteren können Schlagwörter zu Artikeln gepeichert werden, die das leicht
 
 Folie 3e:
 (Flashanimation markup)
-Bei einem Update eines Datensatzes in der Datenbank (z. B. der Änderung einer Telefonnummer) müssen diese Änderungen auch in Artikeln sichtbar werden, die den entprechenen Datensatz einbinden. Dazu werden zu jedem Artikel die Markups, die auf entsprechende Elemente in der Fernuni-Struktur verweisen, in der Datenbank gespeichert. Die Verbindung mit den Strukturdaten wird dabei mithilfe von Subtypen der Entität Markup (z. B. Lehrgebiete-Markup) realisiert. Dazu wird in der entprechenden Markup-Tabelle gespeichert, welches Attribut der betreffenden Fernuni-Entität referenziert wird.
+Bei einem Update eines Datensatzes in der Datenbank (z. B. der Änderung einer Telefonnummer) müssen diese Änderungen auch in Artikeln sichtbar werden, die den entprechenen Datensatz einbinden. Dazu werden zu jedem Artikel die Markups, die auf entsprechende Elemente in der Fernuni-Struktur verweisen, in der Datenbank gespeichert. Die Verbindung mit den Strukturdaten wird dabei mithilfe von Subtypen der Entität Markup (z. B. Lehrgebiete-Markup) realisiert. Es handelt sich dabei um eine totale Spezialisierung, die über einen Fremdschlüssel abgesichert ist. Beim Einfügen eines Datensatzes in eine Subtyp-Tabelle besorgt ein Datenbank-Trigger den entsprechenden Eintrag in der Supertyp-Tabelle.
+In den Subtypen der Markup-Tabelle wird dann gespeichert, welches Attribut der betreffenden Fernuni-Entität referenziert wird.
 
 Folie 3f:
 (Flashanimation benutzer)
