@@ -26,6 +26,7 @@ Beim Speichern von Änderungern in der Struktur der Fernuni überprüft die Anwe
 Abschliessend können Artikel zur Veröffentlichung freigegeben oder zur späteren Weiterbearbeitung abgespeichert werden.
 Zur Gewährleistung eines durchgehenden Erscheinungsbildes des Webauftritts werden dem Redakteur Seitenvorlagen bereitgestellt. Sie legen Aufbau und Aussehen der Artikel fest und erleichtern das Erstellen von speziellen Artikeln wie z. B. Klausurankündigungen.
 
+
 Die Datenbank ist passiv und bildet das ER-Diagramm ab.
 Zugriff auf die Datenbank findet mittels SQL-Abfragen seitens des Frontends und des Backends statt.
 
