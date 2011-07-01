@@ -181,5 +181,5 @@ Folie 5: Anwendungsprogramm
 ------------------------------------------------
 
 (Bild: Screenshot_Anwendungsprogramm.png, Link zur Webseite)
-
 (Bedienungsanleitung im Anwendungsprogramm integriert)
+Kommen wir nun zu dem Anwenundungsprogramm. Unserer Prototyp wurde mit PHP umgesetzt, was wir auch für die spätere Entwicklung des Anwendungsprogramms empfehlen. Im Gegensatz zum späteren Content Management System haben wir das Backend und Frontend getrennt entwickelt, wobei beide auf die gleiche Datenbasis zugreifen. Eine Bedienungsanleitung für das Backend haben wir auf den jeweiligen Seiten integriert.
