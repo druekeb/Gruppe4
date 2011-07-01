@@ -15,18 +15,16 @@ Die erweiterete Suche sollte eine Einschränkung der einfachen Suche nach Unterp
 
 Das Backend stellt dem eingeloggtem Redakteur ein erweitertes Frontend zur Verfügung welches Änderungen an den vorhandenen Artikeln ermöglicht. Dabei werden zusätzliche Operationen wie
 	- das Editieren des Artikel 
-	- Zugriff auf ältere Versionen des Artikels
-	- Archivieren des Artikels
-	- sowie Löschen eines Artikels
+	- den Zugriff auf ältere Versionen des Artikels
+	- das Archivieren des Artikels
+	- sowie das Löschen eines Artikels
 unterhalb jeden Artikels angezeigt.
 Ferner gibt es die Option einen "neuen Artikel zu erstellen".
 Das Editieren eines Artikels erlaubt es dem Redakteur die Attribute des Artikels wie z.B. Erscheinungs- und Ablaufsdatum, Schlagwörter und Kategorie zu definieren und seinen Inhalt zu bestimmen.
 Durch im Artikeltext eingefügte Platzhalter kann auf interne oder externe Medien, sowie durch Markups auf Daten der Struktur der Fernuni (Lehrgebiete, Mitarbeiter, Telefonnummern, usw.) verwiesen werden.
-Beim Speichern von Änderungern in der Struktur der Fernuni (z.B. update mitarbeiter set Telefon='0000000'
-where mitarbeiter_id = 1004;) überprüft die Anwendung über die Beziehungsrelation zwischen den Entitäten Artikel und
-Markups, in welchen Artikeln diese Datensätze als Markups integriert sind (im Beispielfall: select artikel_id from
-artikel_markups where markup_id = (select markup_id from mitarbeiter_markups where mitarbeiter_id = 1004 and Feldname =
-'Telefon'); Die betroffenen Artikel werden dann automatisch neu gerendert und als neue Version gespeichert.
+Beim Speichern von Änderungern in der Struktur der Fernuni überprüft die Anwendung über die Beziehungsrelation zwischen den Entitäten Artikel und
+Markups, in welchen Artikeln diese Datensätze als Markups integriert sind.
+Die betroffenen Artikel werden dann automatisch neu gerendert und als neue Version gespeichert. Dazu werden wir später in der Präsentation noch noch ein Beispiel sehen.
 Abschliessend können Artikel zur Veröffentlichung freigegeben oder zur späteren Weiterbearbeitung abgespeichert werden.
 Zur Gewährleistung eines durchgehenden Erscheinungsbildes des Webauftritts werden dem Redakteur Seitenvorlagen bereitgestellt. Sie legen Aufbau und Aussehen der Artikel fest und erleichtern das Erstellen von speziellen Artikeln wie z. B. Klausurankündigungen.
 
@@ -107,8 +105,26 @@ Ein weiterer Teilbereich der Datenbank bildet die Struktur der FernUni nach, dad
 ------------------------------------------------
 Folie 4a, 4b...: SQL-Skripte
 ------------------------------------------------
+(die Folien enthalten jeweils den Text zwischen den beiden "---", der Rest wird gesprochen)
 
 Folie 4a:
+Wenn z.B. die Telefonnummer eines Mitarbeiters geändert wird, in diesem Beispiel des Mitarbeiters mit ID 1004, kann die Anwendung mit Hilfe dieser Infomationen alle Artikel auswählen die diese Angabe enthalten und eine neue Version mit den geänderten Daten automatisch erstellen.
+
+---
+Update von Daten und neu-rendern aller Artikel die diese Daten verwenden
+
+UPDATE mitarbeiter SET Telefon='0000000' WHERE mitarbeiter_id = 1004
+
+SELECT artikel_id
+FROM artikel_markups
+WHERE markup_id = 
+	(select markup_id from mitarbeiter_markups where mitarbeiter_id = 1004 and Feldname = 'Telefon')
+---
+
+Folie 4b:
+Diese SQL Abfrage liefert alle momentan gespeicherten Artikelversionen mit deren Status und dem Benutzer der diese gespeichert hat.
+
+---
 Alle Artikelversionen abrufen
 
 SELECT
@@ -125,14 +141,17 @@ FROM
 ORDER BY
 	a.artikel_id,
 	v.artikelversion_id
+---
 
+Folie 4c:
+Um die Artikel die unter einem bestimmten Menupunkt aufgezeit werden sollen abzurufen kann die folgende Abfrage verwendet werden.
 
-Folie 4b:
+---
 Alle Artikel die unter einem Menupunkt [MENUID] auftauchen sollen abrufen
 
 SELECT
 	a.artikel_id,
-        a.titel,
+	a.titel,
 	a.typ,
 	b.anzeigename,
 	b.benutzer_id,
@@ -154,8 +173,11 @@ WHERE
 	(v.ablaufdatum IS NULL OR v.ablaufdatum >= CURRENT_TIMESTAMP) AND
 	(v.erscheinungsdatum IS NULL OR v.erscheinungsdatum <= CURRENT_TIMESTAMP)
 ORDER BY v.aenderungsdatum DESC
+---
+Folie 4d:
+Eine Möglichkeit Schlagwörter einzusetzen ist das erstellen einer sogenannten Tag-Cloud, die anzeigt wie häufig ein Schlagwort verschiedenen Artikel zugeordnet wurde. Dazu kann die folgende Abfrage verwendet werden.
 
-Folie 4c:
+---
 Schlagwörter mit Häufigkeit (z.B. für eine Tag-Cloud)
 
 SELECT
@@ -173,8 +195,7 @@ GROUP BY
 	s.schlagwort
 ORDER BY
 	COUNT (s.schlagwort)
-
-
+---
 
 ------------------------------------------------
 Folie 5: Anwendungsprogramm
