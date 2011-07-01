@@ -22,7 +22,11 @@ unterhalb jeden Artikels angezeigt.
 Ferner gibt es die Option einen "neuen Artikel zu erstellen".
 Das Editieren eines Artikels erlaubt es dem Redakteur die Attribute des Artikels wie z.B. Erscheinungs- und Ablaufsdatum, Schlagwörter und Kategorie zu definieren und seinen Inhalt zu bestimmen.
 Durch im Artikeltext eingefügte Platzhalter kann auf interne oder externe Medien, sowie durch Markups auf Daten der Struktur der Fernuni (Lehrgebiete, Mitarbeiter, Telefonnummern, usw.) verwiesen werden.
-Beim Speichern von Änderungern in der Struktur der Fernuni überprüft die Anwendung, in welchen Artikeln diese Datensätze als Markups integriert sind. Die betroffenen Artikel werden dann automatisch neu gerendert und als neue Version gespeichert.
+Beim Speichern von Änderungern in der Struktur der Fernuni (z.B. update mitarbeiter set Telefon='0000000'
+where mitarbeiter_id = 1004;) überprüft die Anwendung über die Beziehungsrelation zwischen den Entitäten Artikel und
+Markups, in welchen Artikeln diese Datensätze als Markups integriert sind (im Beispielfall: select artikel_id from
+artikel_markups where markup_id = (select markup_id from mitarbeiter_markups where mitarbeiter_id = 1004 and Feldname =
+'Telefon'); Die betroffenen Artikel werden dann automatisch neu gerendert und als neue Version gespeichert.
 Abschliessend können Artikel zur Veröffentlichung freigegeben oder zur späteren Weiterbearbeitung abgespeichert werden.
 Zur Gewährleistung eines durchgehenden Erscheinungsbildes des Webauftritts werden dem Redakteur Seitenvorlagen bereitgestellt. Sie legen Aufbau und Aussehen der Artikel fest und erleichtern das Erstellen von speziellen Artikeln wie z. B. Klausurankündigungen.
 
