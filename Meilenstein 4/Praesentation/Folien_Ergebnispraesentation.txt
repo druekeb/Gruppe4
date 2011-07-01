@@ -201,6 +201,11 @@ ORDER BY
 Folie 5: Anwendungsprogramm
 ------------------------------------------------
 
-(Bild: Screenshot_Anwendungsprogramm.png, Link zur Webseite)
+(Bild: Screenshot_Anwendungsprogramm.png, Link zur Webseite, Benutzername: FUHagen, Passwort: 1591)
 
-(Bedienungsanleitung im Anwendungsprogramm integriert)
+Um die Funktionalität unseres Konzept zu zeigen haben wir einen Prototypen unter
+http://grp4dms.dyndns.org/FUHagen zur Verfügung gestellt.
+Eine kurze Anleitung und Erläuterungen zur Benutzung sind in das Backend integriert.
+
+Dies stellt das Ende unserer Präsentation dar.
+Das Team von Group 4 Data Management Solutions bedankt sich für Ihre Aufmerksamkeit.
