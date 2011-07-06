@@ -1,1 +1,24 @@
-﻿
+﻿Das Frontend soll die Menüstruktur abbilden sowie ein Durchblättern und Suchen der Artikel ermöglichen.
+Die Suchfunktion sollte eine einfache sowie eine erweiterte Suche erlauben, bei der alle Beiträge nach textlichen Übereinstimmung des Suchbegriffes durchsucht werden.
+Die Ausgabe der Suche erfolgt durch Auflisten von bis zu 10 Treffern mit der Möglichkeit weitere Treffer anzusehen.
+Treffer werden durch die Artikelüberschrift, Datum, Autor und gegebenfalls Kategorie sowie den erste drei Zeilen des Inhaltes angezeigt.
+Die erweiterete Suche sollte eine Einschränkung der einfachen Suche nach Unterpunkten wie Autor, Datum, Schlagwörter, usw. ermöglichen.
+
+Das Backend stellt dem eingeloggtem Redakteur ein erweitertes Frontend zur Verfügung welches Änderungen an den vorhandenen Artikeln ermöglicht. Dabei werden zusätzliche Operationen wie
+- das Editieren des Artikel
+- den Zugriff auf ältere Versionen des Artikels
+- das Archivieren des Artikels
+- sowie das Löschen eines Artikels
+unterhalb jeden Artikels angezeigt.
+Ferner gibt es die Option einen "neuen Artikel zu erstellen".
+Das Editieren eines Artikels erlaubt es dem Redakteur die Attribute des Artikels wie z.B. Erscheinungs- und Ablaufsdatum, Schlagwörter und Kategorie zu definieren und seinen Inhalt zu bestimmen.
+Durch im Artikeltext eingefügte Platzhalter kann auf interne oder externe Medien, sowie durch Markups auf Daten der Struktur der Fernuni (Lehrgebiete, Mitarbeiter, Telefonnummern, usw.) verwiesen werden.
+Beim Speichern von Änderungern in der Struktur der Fernuni überprüft die Anwendung über die Beziehungsrelation zwischen den Entitäten Artikel und
+Markups, in welchen Artikeln diese Datensätze als Markups integriert sind.
+Die betroffenen Artikel werden dann automatisch neu gerendert und als neue Version gespeichert. Dazu werden wir später in der Präsentation noch noch ein Beispiel sehen.
+Abschliessend können Artikel zur Veröffentlichung freigegeben oder zur späteren Weiterbearbeitung abgespeichert werden.
+Zur Gewährleistung eines durchgehenden Erscheinungsbildes des Webauftritts werden dem Redakteur Seitenvorlagen bereitgestellt. Sie legen Aufbau und Aussehen der Artikel fest und erleichtern das Erstellen von speziellen Artikeln wie z. B. Klausurankündigungen.
+
+
+Die Datenbank ist passiv und bildet das ER-Diagramm ab.
+Zugriff auf die Datenbank findet mittels SQL-Abfragen seitens des Frontends und des Backends statt.

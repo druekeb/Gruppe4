@@ -1,1 +1,14 @@
-﻿
+﻿Über den momentan geplanten Funktionsumfang hinaus sind auch noch weitere Funktionen denkbar.
+Dazu zählen z.B. ein automatisches Update der Struktur der FernUni in der CMS Datenbank von einer externen Datenquelle wie etwa einer schon vorhandenen Datenbank.
+Auch komplexes Markup um z.B. alle Kurse einer Fakultät die "3D" im Namen haben aufzulisten und entsprechende Artikel zu verlinken ist denkbar.
+Weiterhin wäre eine zwingende Beteiligung mehrerer Personen an der Veröffentlichung eines Artikels möglich.
+
+Diese Funktionen sind momentan nicht Teil des Entwurfs und würden den Umfang des Projekts erheblich steigern.
+
+Für das automatische Update müssen dazu entsprechende Importfilter erstellt werden die die externen Daten in die CMS interne Struktur importieren. Gleichzeitig müssen Artikel die auf diese Daten zugreifen neu gerendert und versioniert werden.
+Eine Abschätzung des Arbeitsaufwandes ist ohne Informationen über die externen Datenquellen nicht möglich.
+
+Komplexes Markup erschwert die Aktualisierung bei geänderten Strukturdaten. Für sehr flexibles Markup muss u.U. auf ein System zurückgegriffen werden bei dem alle Artikel neu gerendert werden und mit der aktuellen Version verglichen werden um Änderungen festzustellen. Das neu-rendern aller statt nur der betroffenen Artikel bedeutet einen weitaus höheren Rechenaufwand.
+
+Die Beteiligung mehrerer Personen an der Veröffentlichung eines Artikels würde die Modellierung eines komplexen Workflows nötig machen, um zu verhindern, dass ein Artikel veröffentlicht wird, bevor er von einer anderen Person begutachtet wurde. Es ist auch fraglich, ob ein solch komplexer Workflow in einer nichtkommerziellen Einrichtung wie der FernUniversität überhaupt benötigt wird.
+
