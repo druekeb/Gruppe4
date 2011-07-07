@@ -3,10 +3,10 @@
 Menubaum
 Die Tabelle MENUBAUM kann durch Zuweisung der parent_menubaum_id einen gerichteten Graphen darstellen. Dieser Graph kann mehrere Wurzeln haben um verschiedene Menus darzustellen z.B. das Menu an der Seite oder oben.
 Die Anwendung sollte dafür sorgen, das der Graph azyklisch bleibt.
-Einzelne Artikel können über die Tabelle MENUARTIKEL an beliebiger Stelle im Menubaum verlinkt werden. Dabei kann die Reihenfolge in der die Artikel augezählt werden über die Eigenschaft "gewicht" geändert werden.
+Einzelne Artikel können über die Tabelle MENUARTIKEL an beliebiger Stelle im Menubaum verlinkt werden. Dabei kann die Reihenfolge in der die Artikel aufgezählt werden über die Eigenschaft "gewicht" geändert werden.
 
 Artikel
-Zu jedem angelegten Artikel werden alle vorhergehenden Versionen gespeichert, durch Benutzung der artikel_id bei Verlinkungen kann immer die aktuellste Version abgerufen werden. Ist ein Artikel bereits abgelaufen oder noch vor dem Erscheinungsdatum, kann die Anwendung einen entsprechenden Hinweis anzeigen. Um zu gewährleisten, das ältere Versionen, die eventuell Markup enthalten, einfach bearbeitet werden können und trotzdem ein Zugriff auf den Artikel so wie er veröffentlicht wurde möglich ist, wird sowohl der Artikel mit Markup also auch der gerenderte Artikel gespeichert.
+Zu jedem angelegten Artikel werden alle vorhergehenden Versionen gespeichert, durch Benutzung der artikel_id bei Verlinkungen kann immer die aktuellste Version abgerufen werden. Ist ein Artikel bereits abgelaufen oder noch vor dem Erscheinungsdatum, kann die Anwendung einen entsprechenden Hinweis anzeigen. Um zu gewährleisten, das ältere Versionen, die eventuell Markup enthalten, einfach bearbeitet werden können und trotzdem ein Zugriff auf den Artikel so wie er veröffentlicht wurde möglich ist, wird sowohl der Artikel mit Markup (markuptext) als auch der gerenderte Artikel (anzeigetext) gespeichert.
 
 Medien und Schlagwörter
 In Artikel können externe Medien wie z. B. Bilder oder Filme eingebunden werden. Dazu wird der Pfad zur entprechenden Datei in der Datenbank hinterlegt und mit dem jeweiligen Artikel verknüpft.
@@ -27,5 +27,5 @@ Sperre
 Um zu verhindern, dass mehrere Redakteure gleichzeitig den selben Artikel bearbeiten, wird dieser für andere Benutzer gesperrt, solange ein Redakteur an ihm arbeitet. Damit ein Artikel nicht von einem Redakteur versehentlich gesperrt bleibt, weil dieser besipielsweise vergisst, das Bearbeitungsfenster zu schließen, wird die Sperre nach einer gewissen Zeit wieder aufgehoben.
 
 Struktur Fernuni
-Ein weiterer Teilbereich der Datenbank bildet die Struktur der FernUni nach, dadurch können Daten wie z.B. Telefonnummern zentral gepflegt werden und müssen nicht manuell in einzelnen Artikeln geändert werden. Die Anwendung merkt sich dazu in der Tabelle MARKUPUPDATE welche Daten in einem Artikel verwendet werden um diese automatisch zu aktualisieren und neu zu versionieren.
+Ein weiterer Teilbereich der Datenbank bildet die Struktur der FernUni nach, dadurch können Daten wie z.B. Telefonnummern zentral gepflegt werden und müssen nicht manuell in einzelnen Artikeln geändert werden. Die Anwendung merkt sich dazu in der Tabelle MARKUPUPDATE (diese realisiert die n:m-Beziehung zwischen ARTIKEL und MARKUP) welche Daten in einem Artikel verwendet werden, um diese automatisch zu aktualisieren und neu zu versionieren.
 

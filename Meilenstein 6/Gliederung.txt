@@ -1,0 +1,14 @@
+﻿1. Funktionalitäten und Möglichkeiten des Systems
+
+2. Einschränkungen und Grenzen des Systems
+
+3. ER-Diagramm
+
+4. Anwendungsprogramm
+
+
+Anhang:
+
+A. komplettes ER-Diagramm in groß auf einer Seite (falls nicht schon vorher)
+
+B. Glossar
