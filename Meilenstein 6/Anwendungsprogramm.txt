@@ -1,1 +1,8 @@
+Das Anwendungsprogramm bildet die Schnittstelle zwischen der Datenbank und 
+dem Benutzer mittels des Frontends und erlaubt es dem Redakteur mittels des Backends Datenbankänderungen durchzuführen. 
+Die Funktionalitäten der beiden Teile wurde in Punkt 1 ausführlich behandelt. 
+Unser Prototyp des Anwendungsprogramms besteht aus einem Webserver (grp4dms.dyndns.org) auf dem PHP-Skripte das Front- und Backend realisieren. 
+Ein Benutzer bzw. Reakteur kann den Protyp durch Aufruf des Webservers in einem der gängigen Browser ausführen. 
+Die PHP-Skripte bedienen sich der Erweiterung PDO_OCI 
+um die Datenbankanbindung zur Oracle Datenbank der Fernuni abzuwickeln.
 ﻿
