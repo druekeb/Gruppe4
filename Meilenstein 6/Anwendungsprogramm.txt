@@ -3,6 +3,74 @@ dem Benutzer mittels des Frontends und erlaubt es dem Redakteur mittels des Back
 Die Funktionalitäten der beiden Teile wurde in Punkt 1 ausführlich behandelt. 
 Unser Prototyp des Anwendungsprogramms besteht aus einem Webserver (grp4dms.dyndns.org) auf dem PHP-Skripte das Front- und Backend realisieren. 
 Ein Benutzer bzw. Reakteur kann den Protyp durch Aufruf des Webservers in einem der gängigen Browser ausführen. 
-Die PHP-Skripte bedienen sich der Erweiterung PDO_OCI 
-um die Datenbankanbindung zur Oracle Datenbank der Fernuni abzuwickeln.
-﻿
+Die PHP-Skripte bedienen sich der Erweiterung PDO_OCI um die Datenbankanbindung zur Oracle Datenbank der Fernuni abzuwickeln.
+
+Zur Veranschaulichung wie die Anwendung die Datenbank benützt, hier einige konkrete Anwendungsfälle
+
+4.1 Menubaum
+Um auf den Menubaum bequem zugreifen zu können sollte die Datenstruktur der Datenbank in eine Anwendungsinterne Struktur überführt werden.
+Wir haben uns beim Prototypen dafür entschieden dieses als einfaches Array mit zusätzlichen Information über direkt abhängige Einträge zu realisieren.
+
+Zuerst laden wir den kompletten Menubaum aus der Datenbank: <code>SELECT * FROM menubaum ORDER BY gewicht</code>
+Dann werden zusätzliche Informationen gespeichert:
+<code>
+foreach ($menubaum as $menuitem) {
+    if (is_null($menuitem->PARENT_MENUBAUM_ID)) {
+        $root_ids[] = $menuitem->MENUBAUM_ID;
+    } else {
+        $menubaum[$menuitem->PARENT_MENUBAUM_ID]->CHILD_IDS[] = $menuitem->MENUBAUM_ID;
+    }
+}
+</code>
+
+Dadurch können für die Darstellung benötigte Informationen schnell aus der Datenstruktur extrahiert werden.
+z.B. all Einträge auf derselben Ebene:
+<code>
+if (!is_null($menubaum[$menubaum_id]->PARENT_MENUBAUM_ID)) {
+    $parent_id = $menubaum[$menubaum_id]->PARENT_MENUBAUM_ID;
+    $siblings = $this->_menubaum[$parent_id]->CHILD_IDS;
+} else {
+    $siblings = array();
+}
+</code>
+
+oder alle untergeordneten Einträge:
+<code>
+$candidates = $menubaum[$menubaum_id]->CHILD_IDS;
+$descendants = $candidates;
+while (!empty($candidates)) {
+    $new_candidates = array();
+    foreach ($candidates as $candidate) {
+        $new_candidates = array_merge($new_candidates, $menubaum[$candidate]->CHILD_IDS);
+    }
+    $descendants = array_merge($descendants, $new_candidates);
+    $candidates = $new_candidates;
+}
+</code>
+
+Natürlich kann dies auch anders realisiert werden.
+
+Während beim erstellen neuer Einträge alle vorhandenen Einträge als "parent" gewählt werden können, muss beim editieren von Einträgen darauf geachtet werden das keine der untergeordneten Einträge ausgewählt wird.
+
+4.3 Versionsmanagement für Artikel
+Beim Abspeichern von neuen Artikelversionen werden alle vorherigen Versionen mit dem Status "Veröffentlicht" archiviert.
+Nur Artikelversionen mit dem Status Veröffentlicht werden neu gerendert wenn sich Änderungen an den Daten der FernUni ergeben.
+
+4.2 Markups
+Die Beziehungen zwischen Artikeln und Markups werden vom Anwendungsprogramm gepflegt.
+Dazu wird eine abzuspeichernde neue Artikelversion nach Markups durchsucht, die Einträge in den Beziehungstabellen vorgenommen und dann das Markup durch die Daten aus den Strukturtabellen ersetzt.
+
+Kommt im Text z.B. das Markup <code>[[mitarbeiter:1001:telefon]]</code> im Artikel mit ID 3 vor, so werden diese Einträge in den Markuptabellen vorgenommen:
+<code>
+INSERT INTO mitarbeiter_markups () VALUES ();
+</code>
+TODO weiterschreiben
+
+4.4 Änderungen an Daten der FernUni
+Wenn sich Änderungen an Daten der FernUni ergeben, werden alle Artikel die diese Daten enthalten neu gerendert.
+Betreffen die Änderungen z.B. die Telefonnummer des Mitarbeiters mit ID 1001:
+<code>
+SELECT artikel_id FROM artikel_markups WHERE markup_id =
+    (select markup_id from mitarbeiter_markups where mitarbeiter_id = 1004 and Feldname = 'Telefon')
+</code>
+TODO weiterschreiben
