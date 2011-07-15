@@ -18,50 +18,42 @@ Die Strukturdaten der Fernuniversität
 Ein ganzer Teilbereich der Datenbank bildet die Struktur der FernUni nach mit Gebäuden, Räumen, Fakultäten, Instituten,
 Lehrgebieten, Kursen und Mitarbeitern. Durch diese Tabellen sollen Daten wie z.B. Telefonnummern und Kursangebote
 zentral gepflegt werden, damit sie bei Änderungen nicht manuell in den einzelnen Artikeln/Seiten angepasst werden
-müssen. Die Strukturdaten werden über die Anwendung als Markups referenziert. Jedesmal, wenn ein Datum aus einer der
-Strukturtabellen in einem Artikel referenziert wird, legt die Anwendung einen entsprechenden Eintrag in der Tabelle
-Markups an mit dem typ (Gebäude, Mitarbeiter,...) des referenzierten Datums, bzw in MARKUPUPDATE. Markupupdate ist die
-Beziehungsrelation, die dei n:m-Beziehung zwischen ARTIKEL und MARKUP herstellt welche Daten in einem Artikel verwendet
-werden, um diese automatisch zu aktualisieren und neu zu versionieren.
-
+müssen. Die Strukturdaten können über die Anwendung als Markups referenziert werden. Jedesmal, wenn ein Datum aus einer
+der Strukturtabellen in einem Artikel referenziert wird, legt die Anwendung einen entsprechenden Eintrag in der Tabelle
+Markups an mit dem Typ (Gebäude, Mitarbeiter,...) des referenzierten Datums, falls noch keiner für diesen Datensatz
+existiert. Außerdem wird in MARKUPUPDATE, der Beziehungsrelation, die die n:m-Beziehung zwischen ARTIKEL und MARKUP
+herstellt, festgehalten, dass dieser Datensatz von dem entsprechenden Artikel verwendet wird, um diesen bei
+Änderung des Datensatzes automatisch zu aktualisieren und neu zu versionieren.
 
 Markups
 Bei einem Update eines Datensatzes in der Datenbank (z. B. der Änderung einer Telefonnummer) müssen diese Änderungen
-auch in Artikeln sichtbar werden, die den entprechenen Datensatz einbinden. Dazu werden zu jedem Artikel die Markups,
-die auf entsprechende Elemente in der Fernuni-Struktur verweisen, in der Datenbank gespeichert. Die Verbindung mit den
-Strukturdaten wird dabei mithilfe von Subtypen der Entität Markup (z. B. Lehrgebiete-Markup) realisiert. Es handelt sich
-dabei um eine totale Spezialisierung, die über einen Fremdschlüssel abgesichert ist. Beim Einfügen eines Datensatzes in
-eine Subtyp-Tabelle besorgt ein Datenbank-Trigger den entsprechenden Eintrag in der Supertyp-Tabelle.
-In den Subtypen der Markup-Tabelle wird dann gespeichert, welches Attribut der betreffenden Fernuni-Entität referenziert
-wird.
+auch in den Artikeln sichtbar werden, die den entprechenden Datensatz einbinden. Dazu werden zu jedem Artikel
+die Markups, die auf entsprechende Elemente in der Fernuni-Struktur verweisen, in der Datenbank gespeichert. Die
+Verbindung mit den Strukturdaten wird dabei mithilfe von Subtypen der Entität Markup (z. B. Lehrgebiete-Markup)
+realisiert. Es handelt sich dabei um eine totale Spezialisierung, die über einen Fremdschlüssel abgesichert ist. Beim
+Einfügen eines Datensatzes in eine Subtyp-Tabelle besorgt ein Datenbank-Trigger den entsprechenden Eintrag in der
+Supertyp-Tabelle. In den Subtypen der Markup-Tabelle wird dann gespeichert, welches Attribut von welchem Datensatz der
+betreffenden Fernuni-Entität referenziert wird.
  
 Menubaum
 Die Tabelle MENUBAUM kann durch Zuweisung der parent_menubaum_id einen gerichteten Graphen darstellen. Dieser Graph kann
-mehrere Wurzeln haben um verschiedene Menus darzustellen z.B. das Menu an der Seite oder oben.
+mehrere Wurzeln haben um verschiedene Menus darzustellen z.B. das Menu am linken Seitenrand oder im Seitenkopf.
 Die Anwendung sollte dafür sorgen, das der Graph azyklisch bleibt.
 Einzelne Artikel können über die Tabelle MENUARTIKEL an beliebiger Stelle im Menubaum verlinkt werden. Dabei kann die
-Reihenfolge in der die Artikel aufgezählt werden über die Eigenschaft "gewicht" geändert werden.
-
+Reihenfolge, in der die Artikel aufgezählt werden über die Eigenschaft "gewicht" geändert werden.
 
 Medien und Schlagwörter
 In Artikel können externe Medien wie z. B. Bilder oder Filme eingebunden werden. Dazu wird der Pfad zur entprechenden
-Datei in der Datenbank hinterlegt und mit dem jeweiligen Artikel verknüpft.
-Des Weiteren können Schlagwörter zu Artikeln gepeichert werden, die das leichtere Finden von Artikeln zu einem
-bestimmten Thema ermöglichen.
-
-
+Datei in der Datenbank hinterlegt und mit dem jeweiligen Artikel verknüpft. Des Weiteren können Schlagwörter zu Artikeln
+gepeichert werden, die das leichtere Finden von Artikeln zu einem bestimmten Thema ermöglichen.
 
 Benutzerkonten
-Die Rechteverwaltung kennt zwei Rollen (Administrator und
-Redakteur). Dem Redakteur können Bereiche der Menüstruktur zugewiesen
-werden. In diesen Bereichen (z.B. einem Fachbereich) steht ihm dann die
-redaktionelle Funktionalität (Erstellen und Bearbeiten von Seiten) zur
-Verfügung.
+Die Rechteverwaltung kennt zwei Rollen (Administrator und Redakteur). Dem Redakteur können Bereiche der Menüstruktur
+zugewiesen werden. In diesen Bereichen (z.B. einem Fachbereich) steht ihm dann die
+redaktionelle Funktionalität (Erstellen und Bearbeiten von Seiten) zur Verfügung.
 
 Sperre
 Um zu verhindern, dass mehrere Redakteure gleichzeitig den selben Artikel bearbeiten, wird dieser für andere Benutzer
 gesperrt, solange ein Redakteur an ihm arbeitet. Damit ein Artikel nicht von einem Redakteur versehentlich gesperrt
-bleibt, weil dieser besipielsweise vergisst, das Bearbeitungsfenster zu schließen, wird die Sperre nach einer gewissen
+bleibt, weil dieser beispielsweise vergisst, das Bearbeitungsfenster zu schließen, wird die Sperre nach einer gewissen
 Zeit wieder aufgehoben.
-
-
