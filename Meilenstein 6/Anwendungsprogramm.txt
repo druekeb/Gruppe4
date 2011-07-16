@@ -63,14 +63,16 @@ Dazu wird eine abzuspeichernde neue Artikelversion nach Markups durchsucht, die 
 Kommt im Text z.B. das Markup <code>[[mitarbeiter:1001:telefon]]</code> im Artikel mit ID 3 vor, so werden diese Einträge in den Markuptabellen vorgenommen:
 <code>
 INSERT INTO mitarbeiter_markups (mitarbeiter_id, feldname) VALUES (1001, 'TELEFON');
-INSERT INTO artikel_markups (markup_id, artikel_id) VALUES ((SELECT MARKUP_SEQ.CURRVAL FROM DUAL), 3);
+COL markupid FOR a30 NEW_VALUE markupid
+SELECT markup_seq.currval AS markupid FROM dual;
+INSERT INTO artikel_markups (markup_id, artikel_id) VALUES (&markupid, 3);
 </code>
 
 4.4 Änderungen an Daten der FernUni
 Wenn sich Änderungen an Daten der FernUni ergeben, werden alle Artikel die diese Daten enthalten neu gerendert.
 Betreffen die Änderungen z.B. die Telefonnummer des Mitarbeiters mit ID 1001:
 <code>
-SELECT artikel_id FROM artikel_markups WHERE markup_id =
+SELECT artikel_id FROM artikel_markups WHERE markup_id IN
     (select markup_id from mitarbeiter_markups where mitarbeiter_id = 1001 and Feldname = 'TELEFON')
 </code>
 
